@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   output: "export",
   images: { unoptimized: true },
   basePath: process.env.PAGES_BASE_PATH || undefined,
+  env: { NEXT_PUBLIC_BASE_PATH: process.env.PAGES_BASE_PATH ?? "" },
   turbopack: {
     root: __dirname,
     rules: {

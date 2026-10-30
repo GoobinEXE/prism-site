@@ -10,7 +10,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # AGENTS — SITE PORTIFOLIO (Prism × Dark Room)
 
-Portfólio do Marcelo. Marcas de superfície: **Prism** (vidro / engenharia) e **Dark Room** (labs / grunge). Currículo em `/curriculo` (PDF em `public/cv/`).
+Portfólio do Marcelo. Marcas de superfície: **Prism** (vidro / engenharia) e **Dark Room** (labs / grunge). Página pessoal com currículo em `/por-tras-do-prism` (`/curriculo` redireciona; PDF e HTML em `public/cv/`).
 
 Este repo é o dono de Prism e Dark Room. O projeto **keen-hawking** só carrega regras de letra tipográfica; não editar Dark Room lá.
 
@@ -56,12 +56,13 @@ Componentes centrais: `ChamberProvider`, `ChamberLink`, `ThemeSync`, `DarkRoomPo
 | `/solucoes` | Produtos Prism (Lumen, RPGYM, Translate, web) + Dark Room |
 | `/dark-room` | Página dedicada Dark Room (título da aba: "Dark Room", sem sufixo Prism) |
 | `/sobre` | Filosofia / sobre |
-| `/curriculo` | Currículo: PDF embutido (md+), prévia JPG no mobile, download |
+| `/por-tras-do-prism` | Quem está por trás do Prism: história do Marcelo + currículo nativo, PDF e versão para impressão |
+| `/curriculo` | Redireciona para `/por-tras-do-prism#curriculo` |
 | `/contato` | Formulário |
 
-Nav "Filosofia" aponta `/sobre`. 404 em `app/not-found.tsx`; `robots.ts` e `sitemap.ts` usam `NEXT_PUBLIC_SITE_URL` (`src/lib/site.ts`).
+Nav "Filosofia" aponta `/sobre`; "Por trás do Prism" aponta `/por-tras-do-prism`. 404 em `app/not-found.tsx`; `robots.ts` e `sitemap.ts` usam `NEXT_PUBLIC_SITE_URL` (`src/lib/site.ts`).
 
-Links de projetos (GitHub, TestFlight): fonte única em `src/lib/projects.ts`, renderizados por `ProjectLinks`. Paths do CV em `src/lib/cv.ts`; ao trocar o PDF, regenerar a prévia (`qlmanage -t` + `sips` para JPG).
+Links de projetos (GitHub, TestFlight): fonte única em `src/lib/projects.ts`, renderizados por `ProjectLinks`. Paths e dados do CV em `src/lib/cv.ts`, sempre via `withBase` (`src/lib/site.ts`), porque o Next não prefixa `basePath` em arquivos de `public/` no export do GitHub Pages. Fonte do PDF: `public/cv/marcelo-pessoa-curriculo.html`; ao editar, regenerar o PDF (Chrome headless `--print-to-pdf`) e a prévia (`qlmanage -t` + `sips` para JPG).
 
 Contato: `sendContact` (`src/app/contato/actions.ts`) envia via Resend; exige `RESEND_API_KEY` e `CONTACT_TO_EMAIL` (opcional `CONTACT_FROM_EMAIL`).
 
@@ -207,5 +208,5 @@ Fluxo: Google Flow → Nano Banana 2.1 (rascunho) / Pro (plate) → sobrescrever
 | Símbolo master Prism no hero | shipped |
 | Plano de aplicação do manual | `docs/brand-application-plan.md` |
 | Overlays/accents em disco | pastas + prompts; arquivos opcionais ainda vazios |
-| Currículo / CV | shipped (`/curriculo`) |
+| Página pessoal + CV | shipped (`/por-tras-do-prism`) |
 | Nav Filosofia → `/sobre` | corrigido |

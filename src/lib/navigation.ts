@@ -3,7 +3,7 @@ export const navLinks = [
   { href: "/solucoes", label: "Soluções" },
   { href: "/dark-room", label: "Dark Room" },
   { href: "/sobre", label: "Sobre" },
-  { href: "/curriculo", label: "Currículo" },
+  { href: "/por-tras-do-prism", label: "Por trás do Prism" },
   { href: "/contato", label: "Contato" },
 ] as const;
 
