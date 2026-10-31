@@ -8,6 +8,8 @@ import { PrismLockup } from "@/components/logos/PrismLockup";
 import { ChamberLink } from "@/components/ChamberLink";
 import { directionForNav, phaseFromPath } from "@/lib/chamber";
 
+const headerLinks = navLinks.filter((link) => link.href !== "/contato");
+
 function PhaseLink({
   href,
   className,
@@ -104,7 +106,7 @@ export function Header() {
             className="hidden items-center gap-1 lg:flex"
             aria-label="Navegação principal"
           >
-            {navLinks.map((link) => {
+            {headerLinks.map((link) => {
               const active =
                 link.href === "/"
                   ? pathname === "/"
@@ -181,7 +183,7 @@ export function Header() {
           aria-label="Navegação móvel"
         >
           <ul className="flex flex-col gap-0.5">
-            {navLinks.map((link) => {
+            {headerLinks.map((link) => {
               const active =
                 link.href === "/"
                   ? pathname === "/"
@@ -204,7 +206,7 @@ export function Header() {
           </ul>
           <Link
             href="/contato"
-            className="btn btn-primary mt-2 w-full"
+            className="btn btn-primary mt-2 w-full md:hidden!"
           >
             Fale conosco
           </Link>
