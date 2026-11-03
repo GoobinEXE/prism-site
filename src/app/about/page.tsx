@@ -4,7 +4,7 @@ import { AboutView } from "./AboutView";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why Prism: we take a big idea and split it into parts we can build one at a time.",
+    "Why Prism: a problem and an idea go in, and the same mind comes out with several solutions.",
 };
 
 export default function AboutPage() {

@@ -288,7 +288,7 @@ const en: Messages = {
     title: "About Prism",
     why: "Why Prism",
     whyP1:
-      "A prism takes a beam of light and splits it into colors. We do the same with ideas: take a big problem and break it into parts we can build one at a time.",
+      "A prism takes in one beam of light and sends out many colors. We work the same way: a problem and an idea go in, and the same mind comes out with several solutions.",
     whyP2:
       "That's where the mobile apps, the desktop software, the web apps and the Dark Room projects come from. Each one with its own character, all from the same place.",
     dark: "What about Dark Room?",
@@ -572,7 +572,7 @@ const pt: Messages = {
     title: "Sobre a Prism",
     why: "Por que Prism",
     whyP1:
-      "Um prisma pega um feixe de luz e separa em cores. A gente faz o mesmo com ideias: pega um problema grande e divide em partes que dá para construir uma de cada vez.",
+      "Um prisma recebe um feixe de luz e devolve várias cores. A gente trabalha igual: um problema e uma ideia entram, e da mesma mente saem várias soluções.",
     whyP2:
       "É daí que saem os apps, os softwares para desktop, os web apps e os projetos da Dark Room. Cada um com o seu jeito, todos vindos do mesmo lugar.",
     dark: "E a Dark Room?",
