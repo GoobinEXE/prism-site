@@ -30,7 +30,7 @@ Itens que o script não enxerga. O revisor marca cada um ou explica a exceção 
 - [ ] **Logo Dark Room:** aparece só sobre fundo escuro, com a porta presa ao M e sem rotação, distorção ou gradiente não homologado.
 - [ ] **Feixe espectral:** a fita de cinco cores nunca encosta no logo Dark Room. A variante espectral só entra com a chancela "Dark Room · Um Estúdio Prism" ou "Dark Room · A Prism Studio", em material B2B.
 - [ ] **Segregação:** P e logo Dark Room não dividem o mesmo bloco visual. A chancela aparece só como texto de governança (footer) ou em peça B2B.
-- [ ] **Monograma P:** glifo `#0D0F13`, micro-fresta preservada, nunca abaixo de 16px; sobre fundo escuro, dentro da placa Marfim.
+- [ ] **Monograma P:** glifo `#0D0F13`, micro-fresta preservada, nunca abaixo de 16px; sobre fundo escuro, ou dentro da placa Marfim (site) ou com o glifo em Marfim `#F2ECE1` sem placa (peças gráficas, posts), nunca em branco puro; a fita de cinco cores não muda.
 - [ ] **Símbolo master:** usado só acima de 120px; abaixo disso, o monograma P.
 - [ ] **Zonas de respiro:** altura do P em volta do lockup Prism; largura do D (0,223 × altura do logo) em volta do logo Dark Room.
 - [ ] **Cor por função:** ciano para link e ação primária no Prism, oliva para status estável, amarelo para aviso, laranja para versão e hardware, magenta para ação. Cor nunca identifica frente ou produto.

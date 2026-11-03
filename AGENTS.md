@@ -153,7 +153,8 @@ Vetores oficiais (manual de marca, `~/Downloads/prism-darkroom-brand-manual.pdf`
 
 - Símbolo master: `PrismSymbol` (`src/components/logos/`), arquivo `public/assets/brand/prism-symbol.svg`. Hero da home. Feixe incidente recolorido para `#8F9397` (no original é branco e some sobre fundo claro); prop `bleed` estende o feixe para fora do viewBox.
 - Monograma P: `PrismMonogram` (`src/components/logos/`), arquivo `public/assets/brand/prism-monogram-p.svg`. Favicon em `src/app/icon.svg` (squircle Marfim `#F2ECE1`).
-- Lockup horizontal: `PrismLockup` (P, filete vertical de 1px em `--rule` a 60%, wordmark PRISM em Geist 700 caixa-alta) no header e no footer. Glifo sempre `#0D0F13`; na fase Dark Room o P ganha placa Marfim com raio de 22%. O lockup não leva nenhuma menção à Dark Room.
+- Lockup horizontal: `PrismLockup` (P, filete vertical de 1px em `--rule` a 60%, wordmark PRISM em Geist 700 caixa-alta) no header e no footer. Glifo sempre `#0D0F13`; na fase Dark Room o P ganha placa Marfim com raio de 22%.
+- Monograma P noturno: em peças gráficas e posts sobre fundo escuro (`#090A0C`), o glifo vai em Marfim `#F2ECE1` direto sobre o fundo, sem placa e nunca em branco puro; a fita de cinco cores permanece nos valores canônicos. Exemplo: `docs/posts/prism-comunicado-dark.png`. O lockup não leva nenhuma menção à Dark Room.
 - Chancela: "Dark Room · Um Estúdio Prism" só como texto na linha legal do footer (rodapé de governança, manual §7.1).
 - Zonas de respiro: `.brand-lockup` reserva a altura do P (`--prism-mark-h`) antes do próximo elemento; `.clear-dark-room` reserva a largura do D (0,223 × altura do logo) abaixo do logo.
 - Imagens de compartilhamento: `src/app/opengraph-image.tsx` (símbolo master sobre Marfim) e `src/app/dark-room/opengraph-image.tsx` (logo entreaberto sobre `#090A0C`), via `ImageResponse`.
