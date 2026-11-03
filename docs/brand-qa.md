@@ -37,7 +37,7 @@ Itens que o script não enxerga. O revisor marca cada um ou explica a exceção 
 - [ ] **Dark Room velada:** cor viva da fita só em ponto focal (núcleo de LED, botão de ação, anel de foco). Halo, fundo, borda e barra usam `--veil-*`.
 - [ ] **Tipografia:** títulos principais com `.section-title` ou `.title-main` (caixa-alta, tracking da fase); rótulos, tags e códigos em JetBrains Mono caixa-alta (`.label-caps`, `.tag`, `.catalog-code`); códigos de catálogo no padrão `DR-XXX`.
 - [ ] **Contraste:** texto novo com razão ≥ 4,5:1 (≥ 3:1 acima de 24px ou 18,66px em negrito) sobre o substrato real, medido no build de produção.
-- [ ] **Texto:** pt-BR técnico e direto, sem contraste retórico forçado nem promessa promocional. Terminologia homologada quando couber: Refração de Ideias, Câmara de Maturação, Soleira de Luz, Preto Fita Magnética, Marfim Vintage.
+- [ ] **Texto:** en e pt-BR diretos, sem contraste retórico forçado nem promessa promocional; sem os padrões de IA do WP:AISIGNS (`~/.cursor/skills/anti-chatbotese/SKILL.md`). Terminologia homologada quando couber: Refração de Ideias, Câmara de Maturação / Maturation Chamber, Soleira de Luz, Preto Fita Magnética, Marfim Vintage. Seletor EN/PT e `data-locale` coerentes com o texto visível.
 - [ ] **Assets:** marcas na web sempre em SVG vetorial; exports do autor intactos em `public/assets/brand/originals/`; caminho novo registrado em `src/lib/brandAssets.ts` e no README da pasta.
 - [ ] **Movimento:** nada de rotação de marca, glitch pesado ou scanline que atrapalhe a leitura; `prefers-reduced-motion` respeitado.
 

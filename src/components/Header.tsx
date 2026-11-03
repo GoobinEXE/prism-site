@@ -6,9 +6,11 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { navLinks } from "@/lib/navigation";
 import { PrismLockup } from "@/components/logos/PrismLockup";
 import { ChamberLink } from "@/components/ChamberLink";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { useLocale } from "@/components/LocaleProvider";
 import { directionForNav, phaseFromPath } from "@/lib/chamber";
 
-const headerLinks = navLinks.filter((link) => link.href !== "/contato");
+const headerLinks = navLinks.filter((link) => link.href !== "/contact");
 
 function PhaseLink({
   href,
@@ -48,6 +50,7 @@ function PhaseLink({
 }
 
 export function Header() {
+  const { t } = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
@@ -97,14 +100,14 @@ export function Header() {
           <PhaseLink
             href="/"
             className="relative z-10 flex shrink-0 items-center"
-            aria-label="Prism, início"
+            aria-label={t.header.homeAria}
           >
             <PrismLockup />
           </PhaseLink>
 
           <nav
             className="hidden items-center gap-1 lg:flex"
-            aria-label="Navegação principal"
+            aria-label={t.header.mainNav}
           >
             {headerLinks.map((link) => {
               const active =
@@ -123,20 +126,23 @@ export function Header() {
                       : "text-(--text-secondary) hover:text-foreground"
                   }`}
                 >
-                  {link.label}
+                  {t.nav[link.key]}
                 </PhaseLink>
               );
             })}
           </nav>
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-2 md:flex">
+            <LocaleSwitcher />
             <Link
-              href="/contato"
+              href="/contact"
               className="btn btn-ghost min-h-9! px-4! text-sm! whitespace-nowrap"
             >
-              Fale conosco
+              {t.header.getInTouch}
             </Link>
           </div>
+
+          <LocaleSwitcher className="relative z-10 md:hidden" />
 
           <button
             ref={toggleRef}
@@ -144,7 +150,7 @@ export function Header() {
             className="relative z-10 inline-flex min-h-11 min-w-11 items-center justify-center rounded-(--radius) bg-(--glass) lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-label={open ? t.header.closeMenu : t.header.openMenu}
             onClick={() => setOpen((v) => !v)}
           >
             <span className="flex w-5 flex-col gap-1.5" aria-hidden="true">
@@ -180,7 +186,7 @@ export function Header() {
           className={`glass-elevated mobile-menu-panel absolute inset-x-0 top-0 z-10 mx-3 mt-3 rounded-xl p-3 transition-all ${
             open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
           }`}
-          aria-label="Navegação móvel"
+          aria-label={t.header.mobileNav}
         >
           <ul className="flex flex-col gap-0.5">
             {headerLinks.map((link) => {
@@ -198,17 +204,17 @@ export function Header() {
                         : "text-(--text-secondary)"
                     }`}
                   >
-                    {link.label}
+                    {t.nav[link.key]}
                   </PhaseLink>
                 </li>
               );
             })}
           </ul>
           <Link
-            href="/contato"
+            href="/contact"
             className="btn btn-primary mt-2 w-full md:hidden!"
           >
-            Fale conosco
+            {t.header.getInTouch}
           </Link>
         </nav>
         <button
@@ -216,7 +222,7 @@ export function Header() {
           className={`absolute inset-0 bg-black/50 transition-opacity ${
             open ? "opacity-100" : "opacity-0"
           }`}
-          aria-label="Fechar menu"
+          aria-label={t.header.closeMenu}
           tabIndex={-1}
           onClick={closeMenu}
         />

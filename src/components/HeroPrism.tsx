@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { PrismSymbol } from "@/components/logos/PrismSymbol";
+import { useLocale } from "@/components/LocaleProvider";
 
 export function HeroPrism() {
+  const { t } = useLocale();
   return (
     <section
       className="hero-prism relative min-h-dvh overflow-hidden pt-(--header-h)"
@@ -20,8 +24,8 @@ export function HeroPrism() {
             Prism
           </h1>
           <div className="animate-fade-up-delay-2 mt-8 flex flex-wrap gap-3">
-            <Link href="/solucoes" className="btn btn-primary">
-              Ver o que fazemos
+            <Link href="/work" className="btn btn-primary">
+              {t.hero.cta}
             </Link>
           </div>
         </div>

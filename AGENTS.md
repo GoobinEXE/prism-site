@@ -10,7 +10,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # AGENTS — SITE PORTIFOLIO (Prism × Dark Room)
 
-Portfólio do Marcelo. Marcas de superfície: **Prism** (vidro / engenharia) e **Dark Room** (labs / grunge). Página pessoal com currículo em `/por-tras-do-prism` (`/curriculo` redireciona; PDF e HTML em `public/cv/`).
+Portfólio do Marcelo. Marcas de superfície: **Prism** (vidro / engenharia) e **Dark Room** (labs / grunge). Página pessoal com currículo em `/behind-prism` (`/curriculo` redireciona; PDF e HTML em `public/cv/`). Site publicado em inglês.
 
 Este repo é o dono de Prism e Dark Room. O projeto **keen-hawking** só carrega regras de letra tipográfica; não editar Dark Room lá.
 
@@ -53,18 +53,18 @@ Componentes centrais: `ChamberProvider`, `ChamberLink`, `ThemeSync`, `DarkRoomPo
 | Rota | Papel |
 |------|--------|
 | `/` | Home: HeroPrism, pilares, DarkRoomPortal, contato rápido |
-| `/solucoes` | Produtos Prism (Lumen, RPGYM, Translate, web) + Dark Room |
+| `/work` | Produtos Prism (Lumen, RPGYM, Translate, web) + Dark Room |
 | `/dark-room` | Página dedicada Dark Room (título da aba: "Dark Room", sem sufixo Prism) |
-| `/sobre` | Filosofia / sobre |
-| `/por-tras-do-prism` | Quem está por trás do Prism: história do Marcelo + currículo nativo, PDF e versão para impressão |
-| `/curriculo` | Redireciona para `/por-tras-do-prism#curriculo` |
-| `/contato` | Formulário |
+| `/about` | Filosofia / sobre |
+| `/behind-prism` | Quem está por trás do Prism: história do Marcelo + currículo nativo (`#cv`), PDF e versão para impressão |
+| `/contact` | Formulário |
+| `/curriculo`, `/solucoes`, `/sobre`, `/por-tras-do-prism`, `/contato` | Rotas legadas em pt-BR: `LegacyRedirect` (noindex) manda para a rota nova |
 
-Nav "Filosofia" aponta `/sobre`; "Por trás do Prism" aponta `/por-tras-do-prism`. 404 em `app/not-found.tsx`; `robots.ts` e `sitemap.ts` usam `NEXT_PUBLIC_SITE_URL` (`src/lib/site.ts`).
+Site bilingue (`en` / `pt-BR`). Slugs canônicos em inglês; rotas pt-BR antigas redirecionam. Cópia em `src/lib/i18n/messages.ts`. Locale: `localStorage` `prism-locale`, senão `navigator.languages` (`pt*` → pt). Bootstrap `beforeInteractive` (`localeBootScript`) seta `lang` e `data-locale` antes do paint. Seletor EN/PT no header e no footer (`LocaleSwitcher`). Metadados estáticos em inglês; `document.title` e `html[lang]` acompanham o locale no cliente. Cópia segue o anti-chatbotese (`~/.cursor/skills/anti-chatbotese/SKILL.md`, WP:AISIGNS). Nav: Home/Início · Work/Trabalho · Dark Room · About/Sobre · Behind Prism/Por trás do Prism · Contact/Contato. 404 em `app/not-found.tsx`; `robots.ts` e `sitemap.ts` usam `NEXT_PUBLIC_SITE_URL` (`src/lib/site.ts`).
 
-Links de projetos (GitHub, TestFlight): fonte única em `src/lib/projects.ts`, renderizados por `ProjectLinks`. Paths e dados do CV em `src/lib/cv.ts`, sempre via `withBase` (`src/lib/site.ts`), porque o Next não prefixa `basePath` em arquivos de `public/` no export do GitHub Pages. Fonte do PDF: `public/cv/marcelo-pessoa-curriculo.html`; ao editar, regenerar o PDF (Chrome headless `--print-to-pdf`) e a prévia (`qlmanage -t` + `sips` para JPG).
+Links de projetos (GitHub, TestFlight): fonte única em `src/lib/projects.ts`, renderizados por `ProjectLinks`. Paths e dados do CV em `src/lib/cv.ts`, sempre via `withBase` (`src/lib/site.ts`), porque o Next não prefixa `basePath` em arquivos de `public/` no export do GitHub Pages. Fonte do PDF: `public/cv/marcelo-pessoa-cv.html` (en) e `public/cv/marcelo-pessoa-curriculo.html` (pt); ao editar, regenerar o PDF (Chrome headless `--headless=new --no-pdf-header-footer --print-to-pdf`) e a prévia (`qlmanage -t -s 1400` + `sips -s format jpeg`). `cvFor(locale)` em `src/lib/cv.ts`.
 
-Contato: `sendContact` (`src/app/contato/actions.ts`) envia via Resend; exige `RESEND_API_KEY` e `CONTACT_TO_EMAIL` (opcional `CONTACT_FROM_EMAIL`).
+Contato: formulário client-side (`ContactForm` + `src/lib/contact.ts`) valida e abre `mailto:` para `CONTACT_MAILTO`; não há server action nem Resend.
 
 ---
 
@@ -73,24 +73,24 @@ Contato: `sendContact` (`src/app/contato/actions.ts`) envia via Resend; exige `R
 Valores: `prism` | `dark-room` no `<html>`.
 
 - `phaseFromPath` em `src/lib/chamber.ts`: path `/dark-room` → dark-room; resto → prism.
-- Bootstrap inline no `layout.tsx` (e no layout de `/dark-room`) evita flash.
+- Bootstrap da fase via `next/script` `beforeInteractive` no `layout.tsx` raiz (cobre `/dark-room`); não colocar `<script>` inline em layouts aninhados, o React acusa erro na navegação.
 - `ThemeSync` sincroniza fase ao pathname; respeita overlay da câmara ativo.
 - Na home, `DarkRoomPortal` troca fase pelo tempo da timeline do scrub (`T.phase`, quando a camada preta cobre a tela).
 - Tokens CSS: bloco `[data-phase="prism"]` (Marfim chapado) vs `[data-phase="dark-room"]` (carvão / magenta / CRT). O site inteiro é chapado: sem degradê, blur, vidro, glow, ruído ou scanline (textura fica para depois, por decisão do autor). Sombra só dura e sem desfoque, só na Dark Room (`--hard-shadow: 4px 4px 0 #000`); cantos `--radius` 2–4px no Prism e 0 na Dark Room.
 
-Travessia de fase entre rotas: `ChamberLink` + `ChamberProvider` + `playChamberTimeline` (`src/lib/chamberTimeline.ts`). Overlay de porta com carimbo ENTRANDO / SAINDO em `#8F9397` (~1.45s; reduced motion ~240ms). Nenhuma cor da fita aparece junto do logo Dark Room no overlay.
+Travessia de fase entre rotas: `ChamberLink` + `ChamberProvider` + `playChamberTimeline` (`src/lib/chamberTimeline.ts`). Overlay de porta com carimbo ENTERING / ENTRANDO e LEAVING / SAINDO em `#8F9397` (~1.45s; reduced motion ~240ms). Nenhuma cor da fita aparece junto do logo Dark Room no overlay.
 
 ---
 
 ## Portal Dark Room (home)
 
-A seção `#portal-dark-room` (`DarkRoomPortal`) é um stage pinado (GSAP ScrollTrigger, `scrub: 1`, ~3.8 viewports desktop / 3.2 mobile). A entrada é scroll. A transição usa **só** o logo Dark Room: nenhum asset Prism aparece no stage, e o header (monograma P) sai de cena enquanto o pin está ativo. Beats (constantes `T` e `SWING` no componente):
+A seção `#portal-dark-room` (`DarkRoomPortal`) é um stage pinado (GSAP ScrollTrigger, `scrub: 0.5`, ~1.8 viewports desktop / 1.6 mobile, em `SCROLL_VIEWPORTS`). A entrada é scroll. A transição usa **só** o logo Dark Room: nenhum asset Prism aparece no stage, e o header (monograma P) sai de cena enquanto o pin está ativo. Beats (constantes `T` e `SWING` no componente):
 
 1. Luz apaga: camada Preto Fita Magnética entra sobre o fundo da página; a fase vira `dark-room` com a tela já preta
 2. Revelação: o logo surge com a porta fechada
 3. Porta gira de 0° a 180° (fechada → entreaberta canônica → aberta rente à parede); o vão é preto absoluto `#000`
 4. Travessia: dolly pelo vão; o preto do vão vira Preto Fita Magnética no fim para casar com a seção seguinte
-5. `Câmara de Maturação`: cards do lab; o logo do cabeçalho fecha a porta (entreaberta → fechada) conforme o scroll
+5. `Câmara de Maturação` / "Maturation Chamber": cards do lab; o logo do cabeçalho fecha a porta (entreaberta → fechada) conforme o scroll
 
 Monomarca: o feixe espectral nunca aparece sobre o logo Dark Room (manual, seção 06). Reduced motion: sem pin, logo entreaberto estático.
 
@@ -100,11 +100,13 @@ Há também página `/dark-room` com o catálogo completo. Pillar “Dark Room�
 
 ## Design system
 
-- Prism: Marfim Vintage `#F2ECE1` chapado, linguagem de etiqueta VHS: cards `vhs-label` com a fita de cinco cores no topo, cantos quase retos. Painéis `glass-spectrum` (`#EAE3D6`) e `glass-strong` (`#F6F2EB`) com filete de 1px em `--rule-soft`; texto `#0D0F13` / `#1F232B` / `#4A515E`. Badges e chips usam as tintas `--ink-*`, todas com AA sobre card + tinta (≥4,59:1).
-- Dark Room: indie underground chapado. Preto Fita Magnética `#090A0C`, painéis `#141820` / `#1A1C1F` com borda dura `#2A2D34` e sombra dura, cantos retos, títulos com régua `dr-rule`, catálogo em etiquetas de fita (`dr-entry`, faixa `#DADADA` com código e tipo em mono) e códigos `catalog-code` carimbados. Texto em escala metálica (`#F0F0F2`, `#DADADA`, `#8F9397`). Cor viva da fita só como ponto focal (núcleo de LED, botão de ação, anel de foco, núcleo da safelight); halos, fundos, bordas e barras usam o espectro velado (`--veil-*`, Abyssal Cyan a Coagulated Magenta). Texto colorido usa `--ink-*` derivadas (fita 50% sobre `#DADADA`). Sem `text-shadow` colorido.
+- Prism: Marfim Vintage `#F2ECE1` chapado, linguagem de etiqueta VHS: cards `vhs-label` com a fita de cinco cores no topo, cantos quase retos. Painéis `glass-spectrum` (`#EAE3D6`) e `glass-strong` (`#F6F2EB`) sem contorno (separação só por cor de fundo); texto `#0D0F13` / `#1F232B` / `#4A515E`. Badges e chips usam as tintas `--ink-*`, todas com AA sobre card + tinta (≥4,59:1).
+- Dark Room: indie underground chapado. Preto Fita Magnética `#090A0C`, painéis `#141820` / `#1A1C1F` sem contorno, com sombra dura, cantos retos, títulos com régua `dr-rule`, catálogo em etiquetas de fita (`dr-entry`, faixa `#DADADA` com código e tipo em mono) e códigos `catalog-code` carimbados. Texto em escala metálica (`#F0F0F2`, `#DADADA`, `#8F9397`). Cor viva da fita só como ponto focal (núcleo de LED, botão de ação, anel de foco, núcleo da safelight); halos, fundos, bordas e barras usam o espectro velado (`--veil-*`, Abyssal Cyan a Coagulated Magenta). Texto colorido usa `--ink-*` derivadas (fita 50% sobre `#DADADA`). Sem `text-shadow` colorido.
 - Paleta canônica (manual, seção 09): `#01ABE8` · `#AEB932` · `#F4E412` · `#E97635` · `#DA0082`. Preto Fita Magnética `#090A0C`; Preto Gráfico `#0D0F13`. Fonte única em TS: `src/lib/brandTokens.ts` (`SPECTRUM`, `VEIL`, `NEUTRAL`, `METAL`); no CSS, as variáveis `--spectrum-*` em `globals.css`. Hex de cor fora desses dois arquivos só com motivo.
-- Home: grid de quatro frentes (móvel, desktop, web, Dark Room) com tag neutra e a fita canônica (`SpectrumRule`) sob o título. Cor marca função (Seção 09: ciano link/primário, oliva status estável, amarelo aviso, laranja versão, magenta ação), nunca frente. DSP/áudio e projetos pessoais não entram no portfólio.
-- Nome público da divisão: "Dark Room" (sem "Labs", sem chip STEALTH). Catálogo `DR-001` a `DR-004`, LimboOS primeiro (carro-chefe, link para terminalhubrpg.web.app).
+- Sem contorno em caixas, botões, tags, header e footer: só preenchimento chapado. Contorno só no anel de foco do teclado e no estado de erro dos campos.
+- Texto: en e pt-BR, conversa com cliente final, tom casual e direto (referência: Apple). Evitar jargão técnico ("fronts", "cross-platform", "low-level") e os padrões de IA do WP:AISIGNS.
+- Home: grid "What we do" (Mobile apps, Desktop software, Web apps, Dark Room) com rótulo neutro e a fita canônica (`SpectrumRule`) sob o título. Cor marca função (Seção 09: ciano link/primário, oliva status estável, amarelo aviso, laranja versão, magenta ação), nunca frente. DSP/áudio e projetos pessoais não entram no portfólio.
+- Nome público da divisão: "Dark Room" (sem "Labs", sem chip STEALTH). Catálogo `DR-001` LimboOS (carro-chefe, link para terminalhubrpg.web.app), `DR-002` Route 1 Kit, `DR-003` Pokéwalker Companion (sem link público ainda), `DR-004` VidelBOT.
 - Hero (`HeroPrism`): símbolo master vetorial (`PrismSymbol`), faixas sangrando à direita, feixe em `#8F9397`. Sem foto de atmosfera e sem parallax.
 
 Não deslocar a direção visual (evitar purple neon genérico, cyberpunk de prateleira, cream+serif terracotta). Pipeline de imagem: ver abaixo.
@@ -201,12 +203,13 @@ Fluxo: Google Flow → Nano Banana 2.1 (rascunho) / Pro (plate) → sobrescrever
 | Item | Estado |
 |------|--------|
 | Home + pilares + portal scroll | shipped |
-| `/solucoes`, `/dark-room`, `/sobre`, `/contato` | shipped |
+| `/work`, `/dark-room`, `/about`, `/contact` | shipped |
 | Chamber overlay entre fases | shipped |
 | Plates hero + porta | shipped |
 | Vetores P + Dark Room (3 estados de porta) | shipped |
 | Símbolo master Prism no hero | shipped |
 | Plano de aplicação do manual | `docs/brand-application-plan.md` |
 | Overlays/accents em disco | pastas + prompts; arquivos opcionais ainda vazios |
-| Página pessoal + CV | shipped (`/por-tras-do-prism`) |
+| Página pessoal + CV | shipped (`/behind-prism`) |
 | Nav Filosofia → `/sobre` | corrigido |
+| Site em inglês (cópia, slugs, metadados, CV) | shipped; rotas pt-BR redirecionam |

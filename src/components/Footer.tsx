@@ -5,8 +5,12 @@ import { PrismLockup } from "@/components/logos/PrismLockup";
 import { SpectrumRule } from "@/components/logos/SpectrumRule";
 import { navLinks } from "@/lib/navigation";
 import { ChamberLink } from "@/components/ChamberLink";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { useLocale } from "@/components/LocaleProvider";
 
 export function Footer() {
+  const { t } = useLocale();
+
   return (
     <footer
       className="mt-auto"
@@ -20,7 +24,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="label-caps text-(--text-muted)">Navegação</h2>
+            <h2 className="label-caps text-(--text-muted)">{t.footer.navigation}</h2>
             <ul className="mt-3 space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -28,7 +32,7 @@ export function Footer() {
                     href={link.href}
                     className="text-sm text-(--text-secondary) transition-colors hover:text-cyan"
                   >
-                    {link.label}
+                    {t.nav[link.key]}
                   </ChamberLink>
                 </li>
               ))}
@@ -44,7 +48,7 @@ export function Footer() {
                   href="/#portal-dark-room"
                   className="transition-colors hover:text-magenta"
                 >
-                  Destaques
+                  {t.footer.highlights}
                 </Link>
               </li>
               <li>
@@ -52,24 +56,27 @@ export function Footer() {
                   href="/dark-room"
                   className="transition-colors hover:text-magenta"
                 >
-                  Todos os projetos
+                  {t.footer.allProjects}
                 </ChamberLink>
               </li>
               <li>
                 <a
-                  href="mailto:contato@prism.dev"
+                  href="mailto:marcelop.smile@gmail.com"
                   className="transition-colors hover:text-cyan"
                 >
-                  contato@prism.dev
+                  marcelop.smile@gmail.com
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 pt-6 text-xs text-(--text-muted) sm:flex-row sm:justify-between">
-          <p>© 2026 Prism. Todos os direitos reservados.</p>
-          <p className="label-caps">Dark Room · Um Estúdio Prism</p>
+        <div className="mt-12 flex flex-col gap-4 pt-6 text-xs text-(--text-muted) sm:flex-row sm:items-center sm:justify-between">
+          <p>{t.footer.rights}</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <LocaleSwitcher />
+            <p className="label-caps">{t.footer.seal}</p>
+          </div>
         </div>
       </div>
     </footer>

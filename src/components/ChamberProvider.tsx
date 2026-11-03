@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import type { ChamberDirection, Phase } from "@/lib/chamber";
 import { playChamberTimeline } from "@/lib/chamberTimeline";
 import { DarkRoomLogo } from "@/components/logos/DarkRoomLogo";
+import { useLocale } from "@/components/LocaleProvider";
 import { gsap } from "@/lib/motion";
 
 type ChamberContextValue = {
@@ -100,7 +101,8 @@ export function ChamberProvider({ children }: { children: ReactNode }) {
     [play, active]
   );
 
-  const stamp = direction === "enter" ? "Entrando" : "Saindo";
+  const { t } = useLocale();
+  const stamp = direction === "enter" ? t.chamber.entering : t.chamber.leaving;
 
   return (
     <ChamberContext.Provider value={value}>

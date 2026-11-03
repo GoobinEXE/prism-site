@@ -4,7 +4,7 @@ import { NEUTRAL } from "@/lib/brandTokens";
 
 export const dynamic = "force-static";
 export const alt =
-  "Símbolo Prism: prisma em aramado refratando um feixe em cinco faixas";
+  "Prism symbol: a wireframe prism refracting a beam into five bands";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -44,7 +44,7 @@ export default function Image() {
             color: NEUTRAL.lead,
           }}
         >
-          PRISM · APPS, DESKTOP E WEB
+          PRISM · APPS, DESKTOP AND WEB
         </div>
       </div>
     ),

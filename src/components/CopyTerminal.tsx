@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale } from "@/components/LocaleProvider";
 
 type CopyTerminalProps = {
   command: string;
 };
 
 export function CopyTerminal({ command }: CopyTerminalProps) {
+  const { t } = useLocale();
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -28,7 +30,7 @@ export function CopyTerminal({ command }: CopyTerminalProps) {
         aria-live="polite"
         className="absolute top-2 right-2 rounded-(--radius) bg-white/10 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-white/20"
       >
-        {copied ? "Copiado" : "Copiar"}
+        {copied ? t.copy.copied : t.copy.copy}
       </button>
     </div>
   );

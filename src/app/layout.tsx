@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { siteUrl } from "@/lib/site";
+import { basePath, siteUrl } from "@/lib/site";
+import { localeBootScript } from "@/lib/i18n/locale";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,6 +9,9 @@ import { ContactFab } from "@/components/ContactFab";
 import { ThemeSync } from "@/components/ThemeSync";
 import { ChamberProvider } from "@/components/ChamberProvider";
 import { PageTransition } from "@/components/PageTransition";
+import { LocaleProvider } from "@/components/LocaleProvider";
+import { LocaleDocument } from "@/components/LocaleDocument";
+import { SkipLink } from "@/components/SkipLink";
 import "./globals.css";
 import { NEUTRAL } from "@/lib/brandTokens";
 
@@ -23,7 +27,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 const description =
-  "A Prism faz apps, softwares para desktop e web apps. A Dark Room cuida dos jogos e dos projetos experimentais.";
+  "Prism builds mobile apps, desktop software and web apps. Dark Room is home to the games and experimental projects.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -32,9 +36,16 @@ export const metadata: Metadata = {
     template: "%s · Prism",
   },
   description,
+  alternates: {
+    languages: {
+      en: "/",
+      "pt-BR": "/",
+    },
+  },
   openGraph: {
     type: "website",
-    locale: "pt_BR",
+    locale: "en_US",
+    alternateLocale: ["pt_BR"],
     siteName: "Prism & Dark Room",
     title: "Prism & Dark Room",
     description,
@@ -52,29 +63,33 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="pt-BR"
+      lang="en"
       data-phase="prism"
       className={`${geist.variable} ${jetbrains.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col font-sans">
         <Script id="phase-boot" strategy="beforeInteractive">
-          {`(function(){var p=location.pathname;document.documentElement.setAttribute("data-phase",p==="/dark-room"||p.indexOf("/dark-room/")===0?"dark-room":"prism");})();`}
+          {`(function(){var p=location.pathname.slice(${basePath.length});document.documentElement.setAttribute("data-phase",p==="/dark-room"||p.indexOf("/dark-room/")===0?"dark-room":"prism");})();`}
         </Script>
-        <a href="#conteudo" className="skip-link">
-          Ir para o conteúdo
-        </a>
-        <ChamberProvider>
-          <ThemeSync />
-          <Header />
-          <PageTransition>
-            <main id="conteudo" className="flex flex-1 flex-col">
-              {children}
-            </main>
-          </PageTransition>
-          <Footer />
-          <ContactFab />
-        </ChamberProvider>
+        <Script id="locale-boot" strategy="beforeInteractive">
+          {localeBootScript}
+        </Script>
+        <LocaleProvider>
+          <SkipLink />
+          <LocaleDocument />
+          <ChamberProvider>
+            <ThemeSync />
+            <Header />
+            <PageTransition>
+              <main id="content" className="flex flex-1 flex-col">
+                {children}
+              </main>
+            </PageTransition>
+            <Footer />
+            <ContactFab />
+          </ChamberProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

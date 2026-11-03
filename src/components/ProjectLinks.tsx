@@ -1,4 +1,7 @@
+"use client";
+
 import { projects, type ProjectKey } from "@/lib/projects";
+import { useLocale } from "@/components/LocaleProvider";
 
 type ProjectLinksProps = {
   project: ProjectKey;
@@ -14,6 +17,7 @@ export function ProjectLinks({
   className = "",
 }: ProjectLinksProps) {
   const { name, links } = projects[project];
+  const { t } = useLocale();
   const linkClass =
     variant === "dark"
       ? "btn-tactical min-h-10! px-3.5! py-2!"
@@ -31,7 +35,7 @@ export function ProjectLinks({
           >
             {named ? `${name} · ${link.label}` : link.label}
             <span className="sr-only">
-              {named ? " (abre em nova aba)" : ` de ${name} (abre em nova aba)`}
+              {named ? t.project.newTab : `: ${name}${t.project.newTabOf}`}
             </span>
             <svg
               width="14"

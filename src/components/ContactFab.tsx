@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLocale } from "@/components/LocaleProvider";
 
 export function ContactFab() {
   const pathname = usePathname();
-  if (pathname === "/contato") return null;
+  const { t } = useLocale();
+  if (pathname === "/contact") return null;
 
   return (
     <Link
-      href="/contato"
+      href="/contact"
       className="contact-fab"
-      aria-label="Abrir página de contato"
-      title="Contato rápido"
+      aria-label={t.fab.aria}
+      title={t.fab.title}
     >
       <svg
         width="22"

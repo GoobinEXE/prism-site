@@ -5,6 +5,8 @@ import { DarkRoomLogo } from "@/components/logos/DarkRoomLogo";
 import { ChamberLink } from "@/components/ChamberLink";
 import { ProjectLinks } from "@/components/ProjectLinks";
 import { ScrollTrigger, gsap } from "@/lib/motion";
+import { basePath } from "@/lib/site";
+import { useLocale } from "@/components/LocaleProvider";
 import {
   DR_DOORWAY,
   DR_DOOR_CENTER,
@@ -18,32 +20,34 @@ const LAB = [
   {
     code: "DR-001",
     title: "LimboOS",
-    lead: "Um companheiro para RPG de mesa disfarçado de sistema operacional antigo. Você joga dentro dele.",
+    leadKey: "limboOS",
     led: "led-cyan",
     projects: ["limboOS"],
   },
   {
     code: "DR-002",
     title: "Route 1 Kit",
-    lead: "Prepara cartões SD e firmwares do Nintendo DSi sem dor de cabeça.",
+    leadKey: "route1",
     led: "led-olive",
     projects: ["route1"],
   },
   {
     code: "DR-003",
     title: "Pokéwalker Companion",
-    lead: "O Pokéwalker de volta, agora no celular. Seus passos viram Watts para HeartGold e SoulSilver.",
+    leadKey: "pokewalker",
     led: "led-magenta",
     projects: ["pokewalker"],
   },
   {
     code: "DR-004",
     title: "VidelBOT",
-    lead: "Bot para Discord que modera o servidor e toca música o dia todo.",
+    leadKey: "videlBot",
     led: "led-yellow",
     projects: ["videlBot"],
   },
 ] as const;
+
+const SCROLL_VIEWPORTS = { desktop: 1.8, compact: 1.6 } as const;
 
 const SWING = { start: 2.1, end: 4.7 } as const;
 
@@ -60,7 +64,7 @@ type Phase = "prism" | "dark-room";
 
 function setHomePhase(phase: Phase) {
   if (document.querySelector(".chamber-overlay.is-active")) return;
-  if (window.location.pathname !== "/") return;
+  if (window.location.pathname.replace(/\/$/, "") !== basePath) return;
   const root = document.documentElement;
   if (root.getAttribute("data-phase") !== phase) {
     root.setAttribute("data-phase", phase);
@@ -81,6 +85,7 @@ function lockupMap(lockup: HTMLElement) {
 }
 
 export function DarkRoomPortal() {
+  const { t } = useLocale();
   const stageRef = useRef<HTMLDivElement>(null);
   const darkRef = useRef<HTMLDivElement>(null);
   const lockupRef = useRef<HTMLDivElement>(null);
@@ -165,11 +170,12 @@ export function DarkRoomPortal() {
           scrollTrigger: {
             trigger: stage,
             start: "top top",
-            end: () => `+=${window.innerHeight * (compact ? 3.2 : 3.8)}`,
+            end: () =>
+              `+=${window.innerHeight * (compact ? SCROLL_VIEWPORTS.compact : SCROLL_VIEWPORTS.desktop)}`,
             pin: true,
             pinSpacing: true,
             anticipatePin: 1,
-            scrub: 1,
+            scrub: 0.5,
             invalidateOnRefresh: true,
             onToggle: (self) => setPortalActive(self.isActive),
           },
@@ -242,7 +248,7 @@ export function DarkRoomPortal() {
     return () => {
       mm.revert();
       setPortalActive(false);
-      if (window.location.pathname === "/") setHomePhase("prism");
+      setHomePhase("prism");
     };
   }, []);
 
@@ -273,7 +279,7 @@ export function DarkRoomPortal() {
           <header className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="title-main text-[clamp(2rem,5vw,3.1rem)] leading-[1.05] font-bold text-(--text-primary)">
-                Câmara de Maturação
+                {t.portal.chamber}
               </h2>
             </div>
             <DarkRoomLogo
@@ -300,7 +306,7 @@ export function DarkRoomPortal() {
                   {item.title}
                 </h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-(--text-muted)">
-                  {item.lead}
+                  {t.portal.leads[item.leadKey]}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {item.projects.map((key) => (
@@ -319,7 +325,7 @@ export function DarkRoomPortal() {
           <div className="mt-10">
             <ChamberLink href="/dark-room" className="btn-tactical">
               <span className="led led-magenta" />
-              Ver todos os projetos
+              {t.portal.seeAll}
             </ChamberLink>
           </div>
         </div>

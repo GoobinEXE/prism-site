@@ -1,12 +1,14 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { interestOptions } from "@/lib/navigation";
+import { INTEREST_KEYS } from "@/lib/i18n/messages";
 import {
+  CONTACT_MAILTO,
   contactMailto,
   validateContact,
   type ContactState,
 } from "@/lib/contact";
+import { useLocale } from "@/components/LocaleProvider";
 
 type ContactFormProps = {
   compact?: boolean;
@@ -14,26 +16,27 @@ type ContactFormProps = {
 
 type FieldErrors = Partial<Record<string, string>>;
 
-function messageFor(
-  field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-) {
-  const { validity } = field;
-  if (validity.valueMissing) {
-    if (field instanceof HTMLSelectElement) return "Escolha uma opção.";
-    if (field.name === "email") return "Informe seu e-mail.";
-    if (field.name === "nome") return "Informe seu nome.";
-    return "Conte o que você precisa.";
-  }
-  if (validity.typeMismatch)
-    return "Use um e-mail válido, como voce@empresa.com.";
-  return field.validationMessage;
-}
-
 export function ContactForm({ compact = false }: ContactFormProps) {
+  const { t } = useLocale();
+  const copy = t.contactForm;
   const [state, setState] = useState<ContactState>({ status: "idle" });
   const [errors, setErrors] = useState<FieldErrors>({});
   const [pending, setPending] = useState(false);
   const messageField = compact ? "mensagem" : "especificacoes";
+
+  function messageFor(
+    field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+  ) {
+    const { validity } = field;
+    if (validity.valueMissing) {
+      if (field instanceof HTMLSelectElement) return copy.missingTopic;
+      if (field.name === "email") return copy.missingEmail;
+      if (field.name === "nome") return copy.missingName;
+      return copy.missingMessage;
+    }
+    if (validity.typeMismatch) return copy.invalidEmail;
+    return field.validationMessage;
+  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -62,7 +65,7 @@ export function ContactForm({ compact = false }: ContactFormProps) {
 
     setPending(true);
     const data = new FormData(form);
-    const result = validateContact(data);
+    const result = validateContact(data, copy);
     if (!("ok" in result)) {
       setState(result);
       if (result.fieldErrors) setErrors(result.fieldErrors);
@@ -71,7 +74,7 @@ export function ContactForm({ compact = false }: ContactFormProps) {
     }
 
     if (result.payload) {
-      window.location.href = contactMailto(result.payload);
+      window.location.href = contactMailto(result.payload, copy);
     }
     setState({ status: "sent" });
     setPending(false);
@@ -111,11 +114,10 @@ export function ContactForm({ compact = false }: ContactFormProps) {
         role="status"
       >
         <p className="font-display text-lg font-bold text-foreground">
-          Mensagem pronta
+          {copy.readyTitle}
         </p>
         <p className="mt-2 text-sm leading-relaxed text-(--text-secondary)">
-          Se o app de e-mail abriu, é só enviar. Senão, escreva direto para
-          contato@prism.dev.
+          {copy.readyBody} {CONTACT_MAILTO}.
         </p>
       </div>
     );
@@ -129,7 +131,7 @@ export function ContactForm({ compact = false }: ContactFormProps) {
       aria-busy={pending}
     >
       <div className="sr-only" aria-hidden="true">
-        <label htmlFor="site">Site</label>
+        <label htmlFor="site">{copy.honeypot}</label>
         <input
           id="site"
           name="site"
@@ -140,42 +142,42 @@ export function ContactForm({ compact = false }: ContactFormProps) {
       </div>
 
       <div className="field">
-        <label htmlFor="nome">Seu nome</label>
+        <label htmlFor="nome">{copy.name}</label>
         <input
           {...fieldProps("nome")}
           type="text"
           autoComplete="name"
-          placeholder="Seu nome"
+          placeholder={copy.namePlaceholder}
         />
         {errorText("nome")}
       </div>
 
       <div className="field">
-        <label htmlFor="email">E-mail</label>
+        <label htmlFor="email">{copy.email}</label>
         <input
           {...fieldProps("email")}
           type="email"
           autoComplete="email"
           inputMode="email"
           spellCheck={false}
-          placeholder="voce@empresa.com"
+          placeholder={copy.emailPlaceholder}
         />
         {errorText("email")}
       </div>
 
       <div className="field">
-        <label htmlFor="frente">Sobre o que você quer falar?</label>
+        <label htmlFor="frente">{copy.topic}</label>
         <select
           {...fieldProps("frente")}
           defaultValue=""
           onChange={() => clearError("frente")}
         >
           <option value="" disabled>
-            Escolha uma opção
+            {copy.pick}
           </option>
-          {interestOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+          {INTEREST_KEYS.map((key) => (
+            <option key={key} value={key}>
+              {copy.interests[key]}
             </option>
           ))}
         </select>
@@ -184,14 +186,12 @@ export function ContactForm({ compact = false }: ContactFormProps) {
 
       <div className="field">
         <label htmlFor={messageField}>
-          {compact ? "Mensagem" : "Conte um pouco sobre o projeto"}
+          {compact ? copy.message : copy.project}
         </label>
         <textarea
           {...fieldProps(messageField)}
           placeholder={
-            compact
-              ? "Conte o que você precisa."
-              : "O que você tem em mente, para quando e onde vai funcionar."
+            compact ? copy.messagePlaceholder : copy.projectPlaceholder
           }
         />
         {errorText(messageField)}
@@ -206,7 +206,7 @@ export function ContactForm({ compact = false }: ContactFormProps) {
         className="btn btn-primary mt-1 self-start disabled:cursor-wait disabled:opacity-60"
         disabled={pending}
       >
-        {pending ? "Abrindo e-mail…" : "Enviar mensagem"}
+        {pending ? copy.opening : copy.send}
       </button>
     </form>
   );

@@ -1,4 +1,4 @@
-import { interestOptions } from "@/lib/navigation";
+import { INTEREST_KEYS, type Messages } from "@/lib/i18n/messages";
 
 export type ContactState = {
   status: "idle" | "sent" | "error";
@@ -7,7 +7,7 @@ export type ContactState = {
 };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-export const CONTACT_MAILTO = "contato@prism.dev";
+export const CONTACT_MAILTO = "marcelop.smile@gmail.com";
 
 function text(formData: FormData, name: string, max: number) {
   const value = formData.get(name);
@@ -23,7 +23,8 @@ export type ContactPayload = {
 };
 
 export function validateContact(
-  formData: FormData
+  formData: FormData,
+  copy: Messages["contactForm"]
 ): { ok: true; payload: ContactPayload | null } | ContactState {
   if (text(formData, "site", 200)) return { ok: true, payload: null };
 
@@ -37,24 +38,23 @@ export function validateContact(
     : "mensagem";
 
   const fieldErrors: Partial<Record<string, string>> = {};
-  if (!nome) fieldErrors.nome = "Informe seu nome.";
-  if (!email) fieldErrors.email = "Informe seu e-mail.";
-  else if (!EMAIL.test(email))
-    fieldErrors.email = "Use um e-mail válido, como voce@empresa.com.";
-  if (!interestOptions.some((option) => option.value === frente))
-    fieldErrors.frente = "Escolha uma opção.";
-  if (!mensagem) fieldErrors[messageField] = "Conte o que você precisa.";
+  if (!nome) fieldErrors.nome = copy.missingName;
+  if (!email) fieldErrors.email = copy.missingEmail;
+  else if (!EMAIL.test(email)) fieldErrors.email = copy.invalidEmail;
+  if (!INTEREST_KEYS.some((key) => key === frente))
+    fieldErrors.frente = copy.missingTopic;
+  if (!mensagem) fieldErrors[messageField] = copy.missingMessage;
 
   if (Object.keys(fieldErrors).length) {
     return {
       status: "error",
-      message: "Faltou algo ali em cima. Dá uma olhada nos campos marcados.",
+      message: copy.missingForm,
       fieldErrors,
     };
   }
 
   const label =
-    interestOptions.find((option) => option.value === frente)?.label ?? frente;
+    copy.interests[frente as keyof typeof copy.interests] ?? frente;
 
   return {
     ok: true,
@@ -62,10 +62,13 @@ export function validateContact(
   };
 }
 
-export function contactMailto(payload: ContactPayload) {
+export function contactMailto(
+  payload: ContactPayload,
+  copy: Messages["contactForm"]
+) {
   const subject = encodeURIComponent(`[Prism · ${payload.label}] ${payload.nome}`);
   const body = encodeURIComponent(
-    `Nome: ${payload.nome}\nE-mail: ${payload.email}\nFrente: ${payload.label}\n\n${payload.mensagem}`
+    `${copy.mailtoName}: ${payload.nome}\n${copy.mailtoEmail}: ${payload.email}\n${copy.mailtoTopic}: ${payload.label}\n\n${payload.mensagem}`
   );
   return `mailto:${CONTACT_MAILTO}?subject=${subject}&body=${body}`;
 }
