@@ -9,6 +9,7 @@ import {
   type ContactState,
 } from "@/lib/contact";
 import { useLocale } from "@/components/LocaleProvider";
+import { track } from "@/lib/analytics";
 
 type ContactFormProps = {
   compact?: boolean;
@@ -74,6 +75,10 @@ export function ContactForm({ compact = false }: ContactFormProps) {
     }
 
     if (result.payload) {
+      track("generate_lead", {
+        form: compact ? "home" : "contact",
+        topic: result.payload.frente,
+      });
       window.location.href = contactMailto(result.payload, copy);
     }
     setState({ status: "sent" });

@@ -2,6 +2,7 @@
 
 import { LOCALES } from "@/lib/i18n/locale";
 import { useLocale } from "@/components/LocaleProvider";
+import { track } from "@/lib/analytics";
 
 type LocaleSwitcherProps = {
   className?: string;
@@ -25,7 +26,10 @@ export function LocaleSwitcher({ className = "" }: LocaleSwitcherProps) {
             type="button"
             aria-pressed={active}
             aria-label={label}
-            onClick={() => setLocale(code)}
+            onClick={() => {
+              if (!active) track("locale_change", { locale: code });
+              setLocale(code);
+            }}
             className={`label-caps min-h-9 min-w-9 rounded-(--radius) px-2.5 transition-colors ${
               active
                 ? "bg-(--surface-high) text-foreground"

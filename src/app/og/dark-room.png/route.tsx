@@ -4,9 +4,7 @@ import { ImageResponse } from "next/og";
 import { NEUTRAL } from "@/lib/brandTokens";
 
 export const dynamic = "force-static";
-export const alt = "Dark Room logo with the door ajar";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+const size = { width: 1200, height: 630 };
 
 const LOGO = await readFile(
   join(process.cwd(), "public/assets/brand/dark-room-logo.svg")
@@ -16,7 +14,7 @@ const SRC = `data:image/svg+xml;base64,${LOGO.toString("base64")}`;
 const LOGO_W = 640;
 const LOGO_H = Math.round((LOGO_W * 756) / 1203);
 
-export default function Image() {
+export function GET() {
   return new ImageResponse(
     (
       <div

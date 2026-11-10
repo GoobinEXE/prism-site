@@ -3,10 +3,7 @@ import { prismSymbolMarkup } from "@/components/logos/PrismSymbol";
 import { NEUTRAL } from "@/lib/brandTokens";
 
 export const dynamic = "force-static";
-export const alt =
-  "Prism symbol: a wireframe prism refracting a beam into five bands";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+const size = { width: 1200, height: 630 };
 
 const VIEW = { x: -720, y: -10, w: 2667, h: 1400 };
 
@@ -14,7 +11,7 @@ const SYMBOL = `<svg xmlns="http://www.w3.org/2000/svg" width="${size.width}" he
 
 const SRC = `data:image/svg+xml;base64,${Buffer.from(SYMBOL).toString("base64")}`;
 
-export default function Image() {
+export function GET() {
   return new ImageResponse(
     (
       <div
