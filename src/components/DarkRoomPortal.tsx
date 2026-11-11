@@ -21,7 +21,7 @@ const LAB = [
     code: "DR-001",
     title: "LimboOS",
     leadKey: "limboOS",
-    led: "led-cyan",
+    led: "led-olive",
     projects: ["limboOS"],
   },
   {
@@ -35,14 +35,14 @@ const LAB = [
     code: "DR-003",
     title: "Pokéwalker Companion",
     leadKey: "pokewalker",
-    led: "led-magenta",
+    led: "led-yellow",
     projects: ["pokewalker"],
   },
   {
     code: "DR-004",
     title: "VidelBOT",
     leadKey: "videlBot",
-    led: "led-yellow",
+    led: "led-olive",
     projects: ["videlBot"],
   },
 ] as const;

@@ -103,7 +103,7 @@ Há também página `/dark-room` com o catálogo completo. Pillar “Dark Room�
 ## Design system
 
 - Prism: Marfim Vintage `#F2ECE1` chapado, linguagem de etiqueta VHS: cards `vhs-label` com a fita de cinco cores no topo, cantos quase retos. Painéis `glass-spectrum` (`#EAE3D6`) e `glass-strong` (`#F6F2EB`) sem contorno (separação só por cor de fundo); texto `#0D0F13` / `#1F232B` / `#4A515E`. Badges e chips usam as tintas `--ink-*`, todas com AA sobre card + tinta (≥4,59:1).
-- Dark Room: indie underground chapado. Preto Fita Magnética `#090A0C`, painéis `#141820` / `#1A1C1F` sem contorno, com sombra dura, cantos retos, títulos com régua `dr-rule`, catálogo em etiquetas de fita (`dr-entry`, faixa `#DADADA` com código e tipo em mono) e códigos `catalog-code` carimbados. Texto em escala metálica (`#F0F0F2`, `#DADADA`, `#8F9397`). Cor viva da fita só como ponto focal (núcleo de LED, botão de ação, anel de foco, núcleo da safelight); halos, fundos, bordas e barras usam o espectro velado (`--veil-*`, Abyssal Cyan a Coagulated Magenta). Texto colorido usa `--ink-*` derivadas (fita 50% sobre `#DADADA`). Sem `text-shadow` colorido.
+- Dark Room: indie underground chapado. Preto Fita Magnética `#090A0C`, painéis `#141820` / `#1A1C1F` sem contorno, com sombra dura, cantos retos, títulos com régua `dr-rule`, catálogo em etiquetas de fita (`dr-entry`, faixa `#DADADA` com código e tipo em mono) e códigos `catalog-code` carimbados. Texto em escala metálica (`#F0F0F2`, `#DADADA`, `#8F9397`). LED do catálogo marca status pela seção 09: oliva = publicado (link público), amarelo = sem link público ainda. Cor viva da fita só como ponto focal (núcleo de LED, botão de ação, anel de foco, núcleo da safelight); halos, fundos, bordas e barras usam o espectro velado (`--veil-*`, Abyssal Cyan a Coagulated Magenta). Texto colorido usa `--ink-*` derivadas (fita 50% sobre `#DADADA`). Sem `text-shadow` colorido.
 - Paleta canônica (manual, seção 09): `#01ABE8` · `#AEB932` · `#F4E412` · `#E97635` · `#DA0082`. Preto Fita Magnética `#090A0C`; Preto Gráfico `#0D0F13`. Fonte única em TS: `src/lib/brandTokens.ts` (`SPECTRUM`, `VEIL`, `NEUTRAL`, `METAL`); no CSS, as variáveis `--spectrum-*` em `globals.css`. Hex de cor fora desses dois arquivos só com motivo.
 - Sem contorno em caixas, botões, tags, header e footer: só preenchimento chapado. Contorno só no anel de foco do teclado e no estado de erro dos campos.
 - Texto: en e pt-BR, conversa com cliente final, tom casual e direto (referência: Apple). Evitar jargão técnico ("fronts", "cross-platform", "low-level") e os padrões de IA do WP:AISIGNS.
@@ -125,7 +125,7 @@ Fonte de verdade dos valores aplicados. CSS em `src/app/globals.css` (blocos `:r
 | `--text-primary` | `#0D0F13` Preto Gráfico | `#F0F0F2` Highlight metálico |
 | `--text-secondary` | `#1F232B` Ardósia | `#DADADA` Aço satinado |
 | `--text-muted` | `#4A515E` Cinza Chumbo Quente | `#8F9397` Cinza Chumbo de Transição |
-| `--rule` / `--rule-soft` | `#4A515E` a 60% / 22% | `#8F9397` a 60% / 14% |
+| `--rule` / `--rule-soft` | `#4A515E` a 60% / 22% | `#8F9397` a 60% / `#2A2D34` |
 | `--spectrum-*` | `#01ABE8` `#AEB932` `#F4E412` `#E97635` `#DA0082` | iguais, só em ponto focal |
 | `--veil-*` | definidos, sem uso | `#083B52` `#3A3F0E` `#5C4E08` `#52240D` `#4A012B` |
 | `--ink-*` (texto colorido) | `#005F85` `#545C10` `#6B5E00` `#963D0A` `#A3005F` derivados | `#6EC2E1` `#C4CA86` `#E7DF76` `#E2A888` `#DA6DAE` derivados |
@@ -159,7 +159,7 @@ Vetores oficiais (manual de marca, `~/Downloads/prism-darkroom-brand-manual.pdf`
 - Monograma P noturno: em peças gráficas e posts sobre fundo escuro (`#090A0C`), o glifo vai em Marfim `#F2ECE1` direto sobre o fundo, sem placa e nunca em branco puro; a fita de cinco cores permanece nos valores canônicos. Exemplo: `docs/posts/prism-comunicado-dark.png`. O lockup não leva nenhuma menção à Dark Room.
 - Chancela: "Dark Room · Um Estúdio Prism" só como texto na linha legal do footer (rodapé de governança, manual §7.1).
 - Zonas de respiro: `.brand-lockup` reserva a altura do P (`--prism-mark-h`) antes do próximo elemento; `.clear-dark-room` reserva a largura do D (0,223 × altura do logo) abaixo do logo.
-- Imagens de compartilhamento: `src/app/opengraph-image.tsx` (símbolo master sobre Marfim) e `src/app/dark-room/opengraph-image.tsx` (logo entreaberto sobre `#090A0C`), via `ImageResponse`.
+- Imagens de compartilhamento: `src/app/og/prism.png/route.tsx` (símbolo master sobre Marfim) e `src/app/og/dark-room.png/route.tsx` (logo entreaberto sobre `#090A0C`), via `ImageResponse`.
 - Dark Room: `DarkRoomLogo` (prop `door` 0 fechada · 0.5 entreaberta canônica · 1 aberta 180°), arquivo `public/assets/brand/dark-room-logo.svg`. Só sobre fundo escuro. Geometria da porta em `src/lib/darkRoomDoor.ts`: projeção em perspectiva ajustada para cair exatamente nos três estados de `originals/dark-room-logo-states.svg`; `doorFromAngle(graus)` converte ângulo físico em `door`.
 - Cores da fita: valores canônicos do manual (seção 09) em todos os vetores: `#01ABE8` · `#AEB932` · `#F4E412` · `#E97635` · `#DA0082`.
 

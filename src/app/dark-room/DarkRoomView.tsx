@@ -21,7 +21,7 @@ const ENTRIES: Entry[] = [
     kind: "game",
     title: "LimboOS",
     leadKey: "limboOS",
-    led: "led-cyan",
+    led: "led-olive",
     project: "limboOS",
   },
   {
@@ -37,7 +37,7 @@ const ENTRIES: Entry[] = [
     kind: "app",
     title: "Pokéwalker Companion",
     leadKey: "pokewalker",
-    led: "led-magenta",
+    led: "led-yellow",
     project: "pokewalker",
   },
   {
@@ -45,7 +45,7 @@ const ENTRIES: Entry[] = [
     kind: "bot",
     title: "VidelBOT",
     leadKey: "videlBot",
-    led: "led-yellow",
+    led: "led-olive",
     project: "videlBot",
   },
 ];

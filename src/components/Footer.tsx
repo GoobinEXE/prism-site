@@ -46,7 +46,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/#portal-dark-room"
-                  className="transition-colors hover:text-magenta"
+                  className="transition-colors hover:text-cyan"
                 >
                   {t.footer.highlights}
                 </Link>
@@ -54,7 +54,7 @@ export function Footer() {
               <li>
                 <ChamberLink
                   href="/dark-room"
-                  className="transition-colors hover:text-magenta"
+                  className="transition-colors hover:text-cyan"
                 >
                   {t.footer.allProjects}
                 </ChamberLink>
