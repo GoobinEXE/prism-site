@@ -53,7 +53,7 @@ Componentes centrais: `ChamberProvider`, `ChamberLink`, `ThemeSync`, `DarkRoomPo
 | Rota | Papel |
 |------|--------|
 | `/` | Home: HeroPrism, pilares, DarkRoomPortal, contato rápido |
-| `/work` | Produtos Prism (Lumen, RPGYM, Translate, web) + Dark Room |
+| `/work` | Produtos Prism (Lumen, RPGYM, Cartograph, Translate, web) + Dark Room |
 | `/dark-room` | Página dedicada Dark Room (título da aba: "Dark Room", sem sufixo Prism) |
 | `/about` | Filosofia / sobre |
 | `/behind-prism` | Quem está por trás do Prism: história do Marcelo + currículo nativo (`#cv`), PDF e versão para impressão |

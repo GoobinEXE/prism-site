@@ -16,6 +16,10 @@ const github = (repo: string): ProjectLink => ({
 export const projects = {
   lumen: { name: "Lumen", links: [github("Lumen")] },
   rpgym: { name: "RPGYM", links: [github("RPGYM")] },
+  cartograph: {
+    name: "Cartograph",
+    links: [{ label: "Web", href: "https://cartographsearch.com" }],
+  },
   prismTranslate: {
     name: "Prism Translate",
     links: [

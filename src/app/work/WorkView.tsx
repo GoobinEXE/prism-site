@@ -79,21 +79,41 @@ export function WorkView() {
             {w.desktop}
           </h2>
 
-          <article className="glass-spectrum max-w-3xl rounded-lg p-6 md:p-8">
-            <h3 className="font-display text-xl font-bold text-foreground">
-              Prism Translate
-            </h3>
-            <p className="mt-3 max-w-[54ch] text-sm leading-relaxed text-(--text-secondary)">
-              {w.translateLead}
-            </p>
-            <div className="mt-6">
-              <p className="mb-2 text-xs font-semibold tracking-wide text-(--text-muted) uppercase">
-                {w.brew}
+          <div className="grid gap-6 lg:grid-cols-2">
+            <article className="glass-spectrum rounded-lg p-6 md:p-8">
+              <h3 className="font-display text-xl font-bold text-foreground">
+                Cartograph
+              </h3>
+              <p className="mt-3 max-w-[54ch] text-sm leading-relaxed text-(--text-secondary)">
+                {w.cartographLead}
               </p>
-              <CopyTerminal command="brew tap goobinexe/tap && brew trust --tap goobinexe/tap && brew install --cask prism-translate" />
-            </div>
-            <ProjectLinks project="prismTranslate" className="mt-6" />
-          </article>
+              <ul className="mt-5 space-y-2 text-sm text-(--text-secondary)">
+                {w.cartographPoints.map((point) => (
+                  <li key={point} className="flex gap-2">
+                    <span className="bullet mt-1.5" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+              <ProjectLinks project="cartograph" className="mt-6" />
+            </article>
+
+            <article className="glass-spectrum rounded-lg p-6 md:p-8">
+              <h3 className="font-display text-xl font-bold text-foreground">
+                Prism Translate
+              </h3>
+              <p className="mt-3 max-w-[54ch] text-sm leading-relaxed text-(--text-secondary)">
+                {w.translateLead}
+              </p>
+              <div className="mt-6">
+                <p className="mb-2 text-xs font-semibold tracking-wide text-(--text-muted) uppercase">
+                  {w.brew}
+                </p>
+                <CopyTerminal command="brew tap goobinexe/tap && brew trust --tap goobinexe/tap && brew install --cask prism-translate" />
+              </div>
+              <ProjectLinks project="prismTranslate" className="mt-6" />
+            </article>
+          </div>
         </div>
       </section>
 

@@ -64,6 +64,8 @@ export type Messages = {
     lumenPoints: string[];
     rpgymLead: string;
     rpgymPoints: string[];
+    cartographLead: string;
+    cartographPoints: string[];
     translateLead: string;
     brew: string;
     webTitle: string;
@@ -272,6 +274,13 @@ const en: Messages = {
       "Workout and weight history",
       "Built for iPhone",
     ],
+    cartographLead:
+      "A research hub that searches 15 open scientific databases at once, organizes your reading list and exports ready-to-use citations.",
+    cartographPoints: [
+      "Simultaneous search across 15 databases and 111 cataloged sources",
+      "Citations in ABNT, APA and BibTeX, plus a review matrix in CSV and PRISMA 2020 screening",
+      "Runs directly in any browser, no sign-up required",
+    ],
     translateLead:
       "Translate the text right where you're typing, without switching windows. It lives in the menu bar and shows up with a shortcut.",
     brew: "Install with Homebrew",
@@ -319,7 +328,7 @@ const en: Messages = {
       "Today I'm at the Paraná state government's Office of Service and Data Governance. I've done BI and IT support there, and now I work as an AI researcher: I test where generative AI and document automation make sense in the state's public services.",
     brands: "Prism and Dark Room",
     brandsP1:
-      "Outside of work hours, I build things. Prism is home to the software: Lumen, an app for keeping track of ADHD, sleep and routine; Prism Translate, which translates text straight from the Mac menu bar; and custom-built websites.",
+      "Outside of work hours, I build things. Prism is home to the software: Lumen, an app for keeping track of ADHD, sleep and routine; Cartograph, a research hub that searches 15 open scientific databases at once; Prism Translate, which translates text straight from the Mac menu bar; and custom-built websites.",
     brandsP1Link: "See our work",
     brandsP2:
       "Dark Room is my corner for games and the gaming community. The flagship is LimboOS, a companion for tabletop RPG campaigns that's already live. During a session it hands players intel, tapes, dossiers and achievements, so the story keeps going away from the table and the game master gets more tools to tell it. Alongside it are Route 1 Kit, Pokéwalker Companion and VidelBOT, a bot for Discord servers.",
@@ -553,6 +562,13 @@ const pt: Messages = {
       "Histórico de treinos e carga",
       "Feito para iPhone",
     ],
+    cartographLead:
+      "Um buscador acadêmico que pesquisa em 15 bases científicas abertas de uma vez, organiza os artigos da sua revisão e entrega as referências prontas.",
+    cartographPoints: [
+      "Busca simultânea em 15 bases e catálogo com 111 fontes",
+      "Citações em ABNT, APA e BibTeX, matriz em CSV e triagem PRISMA 2020",
+      "Roda direto no navegador, sem precisar de cadastro",
+    ],
     translateLead:
       "Traduza o texto onde você está digitando, sem trocar de janela. Ele fica na barra de menus e aparece com um atalho.",
     brew: "Instale pelo Homebrew",
@@ -603,7 +619,7 @@ const pt: Messages = {
       "Hoje estou na Superintendência-Geral de Governança de Serviços e Dados. Passei por BI e suporte de TI e agora sou pesquisador em inteligência artificial, testando onde IA generativa e automação de documentos fazem sentido nos serviços públicos do Paraná.",
     brands: "Prism e Dark Room",
     brandsP1:
-      "Fora do expediente, eu construo coisas. O Prism é a casa dos softwares: o Lumen, app para acompanhar TDAH, sono e rotina; o Prism Translate, que traduz texto direto da barra de menus do Mac; e sites feitos sob medida.",
+      "Fora do expediente, eu construo coisas. O Prism é a casa dos softwares: o Lumen, app para acompanhar TDAH, sono e rotina; o Cartograph, buscador acadêmico que pesquisa em 15 bases científicas abertas de uma vez; o Prism Translate, que traduz texto direto da barra de menus do Mac; e sites feitos sob medida.",
     brandsP1Link: "Ver o trabalho",
     brandsP2:
       "A Dark Room é o meu canto de jogos e da comunidade gamer. O carro-chefe é o LimboOS, um companion para campanhas de RPG de mesa que já está no ar. Durante a sessão, ele entrega aos jogadores intel, fitas, dossiês e conquistas, então a história continua fora da mesa e o mestre ganha mais ferramentas para contar ela. Junto dele ficam o Route 1 Kit, o Pokéwalker Companion e o VidelBOT, um bot para servidores de Discord.",
