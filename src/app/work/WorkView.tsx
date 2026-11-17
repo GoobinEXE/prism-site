@@ -31,9 +31,12 @@ export function WorkView() {
 
           <div className="grid gap-6 lg:grid-cols-2">
             <article className="glass-spectrum rounded-lg p-6 md:p-8">
-              <h3 className="font-display text-xl font-bold text-foreground">
-                Lumen
-              </h3>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="font-display text-xl font-bold text-foreground">
+                  Lumen
+                </h3>
+                <span className="tag text-cyan">{w.lumenTag}</span>
+              </div>
               <p className="mt-3 max-w-[54ch] text-sm leading-relaxed text-(--text-secondary)">
                 {w.lumenLead}
               </p>
@@ -81,9 +84,15 @@ export function WorkView() {
 
           <div className="grid gap-6 lg:grid-cols-2">
             <article className="glass-spectrum rounded-lg p-6 md:p-8">
-              <h3 className="font-display text-xl font-bold text-foreground">
-                Cartograph
-              </h3>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="font-display text-xl font-bold text-foreground">
+                  Cartograph
+                </h3>
+                <span className="tag gap-1.5 text-olive">
+                  <span className="led led-olive" aria-hidden="true" />
+                  {w.cartographTag}
+                </span>
+              </div>
               <p className="mt-3 max-w-[54ch] text-sm leading-relaxed text-(--text-secondary)">
                 {w.cartographLead}
               </p>
