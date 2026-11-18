@@ -41,22 +41,6 @@ export function BrandManualView() {
             >
               {isEn ? "Open 20-page PDF" : "Abrir PDF (20 páginas)"}
             </a>
-            <a
-              href="/brand-manual.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ghost"
-            >
-              {isEn ? "Full Markdown (.md)" : "Markdown completo (.md)"}
-            </a>
-            <a
-              href="/color-psychology-manual.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ghost"
-            >
-              {isEn ? "Color Psychology (.md)" : "Psicologia das Cores (.md)"}
-            </a>
             <Link href="/about" className="btn btn-ghost">
               {isEn ? "Back to About" : "Voltar para Sobre"}
             </Link>

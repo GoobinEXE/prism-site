@@ -116,6 +116,21 @@ export function AboutView() {
               ))}
             </ul>
 
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4">
+                <div className="font-mono text-xs uppercase tracking-[0.12em] text-(--text-muted)">
+                  {a.manualLogosTitle}
+                </div>
+                <p className="mt-2 text-xs text-(--text-secondary)">{a.manualLogosSummary}</p>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4">
+                <div className="font-mono text-xs uppercase tracking-[0.12em] text-(--text-muted)">
+                  {a.manualTypeTitle}
+                </div>
+                <p className="mt-2 text-xs text-(--text-secondary)">{a.manualTypeSummary}</p>
+              </div>
+            </div>
+
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/brand-manual" className="btn btn-primary">
                 {a.manualOpenSite}
@@ -127,22 +142,6 @@ export function AboutView() {
                 className="btn btn-ghost"
               >
                 {a.manualOpenPdf}
-              </a>
-              <a
-                href="/brand-manual.md"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-ghost"
-              >
-                {a.manualOpenFull}
-              </a>
-              <a
-                href="/color-psychology-manual.md"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-ghost"
-              >
-                {a.manualOpenPsychology}
               </a>
             </div>
           </article>

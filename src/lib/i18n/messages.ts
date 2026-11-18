@@ -92,10 +92,12 @@ export type Messages = {
     manualPrismSubstrate: string;
     manualDarkSubstrate: string;
     manualSpectrumTitle: string;
-    manualOpenFull: string;
+    manualLogosTitle: string;
+    manualLogosSummary: string;
+    manualTypeTitle: string;
+    manualTypeSummary: string;
     manualOpenSite: string;
     manualOpenPdf: string;
-    manualOpenPsychology: string;
   };
   behind: {
     title: string;
@@ -326,10 +328,14 @@ const en: Messages = {
     manualPrismSubstrate: "Vintage Ivory — clean-room clarity for software, docs, and B2B",
     manualDarkSubstrate: "Magnetic Black — deep analog floor without sterile 100% black",
     manualSpectrumTitle: "Canonical Spectrum (L→R · 20% each)",
-    manualOpenFull: "Read full brand manual (.md)",
-    manualOpenSite: "Open full manual on site",
+    manualLogosTitle: "Logos, Icon Scales & Clear Space",
+    manualLogosSummary:
+      "Master Prism (>120px, 1X clear space), P monogram (16–119px, height of P), and Dark Room DR icon (22% radius on Magnetic Black, width of D).",
+    manualTypeTitle: "Typography & Physical Media",
+    manualTypeSummary:
+      "Geist / Inter uppercase titles (+0.04em to +0.08em Prism; -0.01em Dark Room), JetBrains Mono for codes, cotton stationery, and VHS packaging.",
+    manualOpenSite: "Open full manual",
     manualOpenPdf: "Open 20-page PDF",
-    manualOpenPsychology: "Color psychology guide (.md)",
   },
   behind: {
     title: "Who's behind Prism",
@@ -630,10 +636,14 @@ const pt: Messages = {
     manualPrismSubstrate: "Marfim Vintage — clareza editorial para software, documentação e B2B",
     manualDarkSubstrate: "Preto Magnético — piso escuro profundo sem preto 100% estéril",
     manualSpectrumTitle: "Fita Espectral Canônica (E→D · 20% cada)",
-    manualOpenFull: "Abrir manual completo (.md)",
-    manualOpenSite: "Ver manual completo no site",
+    manualLogosTitle: "Logotipos, Escalas de Ícone e Respiro",
+    manualLogosSummary:
+      "Master Prism (>120px, respiro 1X), monograma P (16–119px, altura do P) e ícone Dark Room DR (raio 22% sobre Preto Magnético, largura do D).",
+    manualTypeTitle: "Tipografia e Mídia Física",
+    manualTypeSummary:
+      "Geist / Inter em caixa-alta (+0,04em a +0,08em Prism; -0,01em Dark Room), JetBrains Mono para códigos, papel algodão e embalagens VHS.",
+    manualOpenSite: "Ver manual completo",
     manualOpenPdf: "Abrir PDF (20 páginas)",
-    manualOpenPsychology: "Guia de psicologia das cores (.md)",
   },
   behind: {
     title: "Quem está por trás do Prism",
