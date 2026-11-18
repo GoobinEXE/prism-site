@@ -40,7 +40,7 @@ export function BrandManualView() {
               rel="noopener noreferrer"
               className="btn btn-primary"
             >
-              {isEn ? "Open 22-page PDF" : "Abrir PDF (22 páginas)"}
+              {isEn ? "Open official PDF" : "Abrir PDF oficial"}
             </a>
             <Link href="/about" className="btn btn-ghost">
               {isEn ? "Back to About" : "Voltar para Sobre"}
@@ -102,34 +102,47 @@ export function BrandManualView() {
             <h2 id="bm-logos" className="title-main text-2xl font-bold">
               {isEn ? "2. Logos, Icon Scales & Clear Space" : "2. Logotipos, Tamanhos de Ícone e Zonas de Proteção"}
             </h2>
-            <div className="mt-6 grid gap-6 md:grid-cols-3">
-              <div className="flex flex-col items-start justify-between rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.marfim }}>
-                <PrismSymbol className="h-24 w-auto" />
-                <div className="mt-4">
-                  <div className="text-sm font-semibold" style={{ color: NEUTRAL.graphic }}>Master Prism (&gt; 120px)</div>
-                  <div className="text-xs" style={{ color: NEUTRAL.lead }}>
-                    {isEn ? "Clear space: 1X (prism base width)" : "Respiro mínimo: 1X (base do prisma)"}
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col items-start justify-between rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.marfim }}>
-                <div className="flex items-center gap-4">
-                  <PrismMonogram className="h-12 w-12" />
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <div className="flex flex-col justify-between rounded-(--radius) border border-(--rule-soft) p-6" style={{ background: NEUTRAL.marfim }}>
+                <div className="flex flex-wrap items-center gap-6">
+                  <PrismSymbol className="h-24 w-auto shrink-0" />
+                  <PrismMonogram className="h-12 w-12 shrink-0" />
                   <PrismLockup />
                 </div>
-                <div className="mt-4">
-                  <div className="text-sm font-semibold" style={{ color: NEUTRAL.graphic }}>Monograma P (16px – 119px)</div>
-                  <div className="text-xs" style={{ color: NEUTRAL.lead }}>
-                    {isEn ? "Favicons, macOS dock & header. Clear space: height of P" : "Favicons, dock macOS e header. Respiro: altura do P"}
+                <div className="mt-5">
+                  <div className="text-sm font-semibold" style={{ color: NEUTRAL.graphic }}>
+                    Prism — Master (&gt; 120px) &amp; Monograma P (16px – 119px)
+                  </div>
+                  <div className="mt-1 text-xs" style={{ color: NEUTRAL.lead }}>
+                    {isEn
+                      ? "Clear space: 1X (prism base) or height of P. Strictly 2D vector SVG."
+                      : "Respiro mínimo: 1X (base do prisma) ou altura do P. Vetor 2D SVG."}
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-start justify-between rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.tape }}>
-                <DarkRoomLogo className="h-auto w-full max-w-[220px]" />
-                <div className="mt-4">
-                  <div className="text-sm font-semibold" style={{ color: METAL.highlight }}>Dark Room (DR 22% radius)</div>
-                  <div className="text-xs" style={{ color: METAL.transition }}>
-                    {isEn ? "Only on Magnetic Black. Clear space: width of D" : "Apenas sobre Preto Magnético. Respiro: largura do D"}
+              <div className="flex flex-col justify-between rounded-(--radius) border border-(--rule-soft) p-6" style={{ background: NEUTRAL.tape }}>
+                <div className="grid grid-cols-3 items-center gap-4">
+                  <div className="flex flex-col items-center gap-2">
+                    <DarkRoomLogo className="aspect-[1203/756] w-full" door={0} />
+                    <span className="font-mono text-[10px]" style={{ color: METAL.transition }}>Fechada</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <DarkRoomLogo className="aspect-[1203/756] w-full" door={0.5} />
+                    <span className="font-mono text-[10px]" style={{ color: METAL.highlight }}>Entreaberta</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <DarkRoomLogo className="aspect-[1203/756] w-full" door={1} />
+                    <span className="font-mono text-[10px]" style={{ color: METAL.transition }}>Aberta</span>
+                  </div>
+                </div>
+                <div className="mt-5">
+                  <div className="text-sm font-semibold" style={{ color: METAL.highlight }}>
+                    Dark Room — SVG Oficial (3 Estados) &amp; Ícone DR (22%)
+                  </div>
+                  <div className="mt-1 text-xs" style={{ color: METAL.transition }}>
+                    {isEn
+                      ? `Only on Magnetic Black (${NEUTRAL.tape}). Clear space: width of letter D.`
+                      : `Exclusivo sobre Preto Magnético (${NEUTRAL.tape}). Respiro: largura da letra D.`}
                   </div>
                 </div>
               </div>
