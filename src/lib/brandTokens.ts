@@ -41,9 +41,9 @@ export const METAL = {
 } as const;
 
 export const SPECTRUM_ROLES = [
-  { name: "Polaroid Cyan", hex: SPECTRUM.cyan, role: "Links e dados primários" },
-  { name: "Citrus Olive", hex: SPECTRUM.olive, role: "Documentação e status estável" },
-  { name: "Solar Yellow", hex: SPECTRUM.yellow, role: "Avisos e telemetria" },
-  { name: "Warm Orange", hex: SPECTRUM.orange, role: "Versões e hardware" },
-  { name: "Intense Magenta", hex: SPECTRUM.magenta, role: "Ação e destaque" },
+  { name: "Prism Cyan", hex: SPECTRUM.cyan, role: "Links, dados primários e clareza técnica" },
+  { name: "Citrus Olive", hex: SPECTRUM.olive, role: "Status consolidado (projeto finalizado) e documentação" },
+  { name: "Solar Yellow", hex: SPECTRUM.yellow, role: "Avisos, prévia e telemetria" },
+  { name: "Warm Orange", hex: SPECTRUM.orange, role: "Versões, datas e hardware" },
+  { name: "Intense Magenta", hex: SPECTRUM.magenta, role: "Ação decisiva e destaque" },
 ] as const;

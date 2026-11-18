@@ -86,7 +86,7 @@
   --margin: clamp(1.25rem, 4vw, 3rem);
 }
 
-/* Fase Dark Room — Preto Fita Magnética, metal acetinado, espectro velado */
+/* Fase Dark Room — Preto Magnético, metal acetinado, espectro velado */
 [data-phase="dark-room"] {
   --surface: #090a0c;
   --surface-dim: #090a0c;
