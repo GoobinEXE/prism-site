@@ -27,7 +27,7 @@ export function BrandManualView() {
       <section className="section pb-10" aria-labelledby="bm-title">
         <div className="container px-(--margin)">
           <div className="font-mono text-xs uppercase tracking-[0.16em] text-(--text-muted)">
-            {isEn ? "Canonical Edition 2026 · SSOT" : "Edição Canônica 2026 · SSOT"}
+            {isEn ? "Canonical Edition 2026" : "Edição Canônica 2026"}
           </div>
           <h1 id="bm-title" className="section-title mt-2">
             {isEn ? "Prism & Dark Room Brand Manual" : "Manual da Marca — Prism & Dark Room"}
@@ -49,12 +49,12 @@ export function BrandManualView() {
         </div>
       </section>
 
-      {/* 1. Arquitetura & Polaridades */}
+      {/* 1. Substratos */}
       <section className="section pt-0" aria-labelledby="bm-arch">
         <div className="container px-(--margin)">
           <article className="glass-strong max-w-4xl p-6 md:p-10">
             <h2 id="bm-arch" className="title-main text-2xl font-bold">
-              {isEn ? "1. Brand Architecture & Substrates" : "1. Arquitetura da Marca e Substratos"}
+              {isEn ? "Brand Architecture & Substrates" : "Arquitetura da Marca e Substratos"}
             </h2>
             <p className="mt-3 text-sm text-(--text-secondary)">
               {isEn
@@ -95,31 +95,59 @@ export function BrandManualView() {
         </div>
       </section>
 
-      {/* 2. Logotipos, Escalas de Ícone e Zonas de Proteção */}
+      {/* 2. Logotipos, Modo Claro/Noturno e Variações */}
       <section className="section pt-0" aria-labelledby="bm-logos">
         <div className="container px-(--margin)">
           <article className="glass-strong max-w-4xl p-6 md:p-10">
             <h2 id="bm-logos" className="title-main text-2xl font-bold">
-              {isEn ? "2. Logos, Icon Scales & Clear Space" : "2. Logotipos, Tamanhos de Ícone e Zonas de Proteção"}
+              {isEn ? "Logos, Night Mode & Variations" : "Logotipos, Modo Noturno e Variações"}
             </h2>
-            <div className="mt-6 grid gap-6 md:grid-cols-2">
-              <div className="flex flex-col justify-between rounded-(--radius) border border-(--rule-soft) p-6" style={{ background: NEUTRAL.marfim }}>
-                <div className="flex flex-wrap items-center gap-6">
-                  <PrismSymbol className="h-24 w-auto shrink-0" />
-                  <PrismMonogram className="h-12 w-12 shrink-0" />
+            <div className="mt-6 grid gap-6 md:grid-cols-3">
+              <div className="flex flex-col justify-between rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.marfim }}>
+                <div className="flex items-center gap-4">
+                  <PrismSymbol className="h-20 w-auto shrink-0" />
                   <PrismLockup />
                 </div>
-                <div className="mt-5">
+                <div className="mt-4">
                   <div className="text-sm font-semibold" style={{ color: NEUTRAL.graphic }}>
-                    Prism — Master (&gt; 120px) &amp; Monograma P (16px – 119px)
+                    Prism Master (&gt; 120px)
                   </div>
                   <div className="mt-1 text-xs" style={{ color: NEUTRAL.lead }}>
-                    {isEn
-                      ? "Clear space: 1X (prism base) or height of P. Strictly 2D vector SVG."
-                      : "Respiro mínimo: 1X (base do prisma) ou altura do P. Vetor 2D SVG."}
+                    {isEn ? "Clear space: 1X (prism base width)" : "Respiro mínimo: 1X (base do prisma)"}
                   </div>
                 </div>
               </div>
+
+              <div className="flex flex-col justify-between rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.marfim }}>
+                <div className="flex items-center justify-center py-3">
+                  <PrismMonogram className="h-14 w-14" glyph={NEUTRAL.graphic} />
+                </div>
+                <div className="mt-4">
+                  <div className="text-sm font-semibold" style={{ color: NEUTRAL.graphic }}>
+                    Monograma P — Modo Claro
+                  </div>
+                  <div className="mt-1 text-xs" style={{ color: NEUTRAL.lead }}>
+                    Glifo {NEUTRAL.graphic} sobre Marfim ({NEUTRAL.marfim}). Respiro: altura do P.
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-between rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.tape }}>
+                <div className="flex items-center justify-center py-3">
+                  <PrismMonogram className="h-14 w-14" glyph={NEUTRAL.marfim} />
+                </div>
+                <div className="mt-4">
+                  <div className="text-sm font-semibold" style={{ color: METAL.highlight }}>
+                    Monograma P — Modo Noturno
+                  </div>
+                  <div className="mt-1 text-xs" style={{ color: METAL.transition }}>
+                    Glifo Marfim ({NEUTRAL.marfim}) direto sobre {NEUTRAL.tape}, sem placa clara.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
               <div className="flex flex-col justify-between rounded-(--radius) border border-(--rule-soft) p-6" style={{ background: NEUTRAL.tape }}>
                 <div className="grid grid-cols-3 items-center gap-4">
                   <div className="flex flex-col items-center gap-2">
@@ -137,7 +165,7 @@ export function BrandManualView() {
                 </div>
                 <div className="mt-5">
                   <div className="text-sm font-semibold" style={{ color: METAL.highlight }}>
-                    Dark Room — SVG Oficial (3 Estados) &amp; Ícone DR (22%)
+                    Dark Room — SVG Oficial (3 Estados)
                   </div>
                   <div className="mt-1 text-xs" style={{ color: METAL.transition }}>
                     {isEn
@@ -146,37 +174,35 @@ export function BrandManualView() {
                   </div>
                 </div>
               </div>
+
+              <div className="flex flex-col justify-between rounded-(--radius) border border-(--rule-soft) p-6" style={{ background: NEUTRAL.tape }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={withBase("/assets/brand/dark-room-logo-spectral-v1.jpg")}
+                  alt="Dark Room Variante Espectral B2B"
+                  className="h-36 w-full rounded-(--radius) object-cover"
+                />
+                <div className="mt-4">
+                  <div className="text-sm font-semibold" style={{ color: METAL.highlight }}>
+                    Dark Room — Variante Espectral B2B
+                  </div>
+                  <div className="mt-1 text-xs" style={{ color: METAL.transition }}>
+                    Exclusiva para contratos e peças institucionais com a chancela A PRISM STUDIO.
+                  </div>
+                </div>
+              </div>
             </div>
-            <ul className="mt-6 space-y-2 text-sm text-(--text-secondary)">
-              <li>
-                <strong>Nível Master (&gt; 120px):</strong> Prisma isométrico em wireframe 3D com refração linear ou wordmark completo Dark Room.
-              </li>
-              <li>
-                <strong>Nível Médio (48px – 119px):</strong> Monograma P Modernista isolado ou `DARK ROOM` sem subtítulo.
-              </li>
-              <li>
-                <strong>Nível Micro / Ícone de Sistema (16px – 47px):</strong> Monograma P sobre Marfim Vintage (Prism) ou monograma DR chanfrado em placa `border-radius: 22%` sobre Preto Magnético (Dark Room).
-              </li>
-              <li>
-                <strong>Regra de Ouro (Mockup 05):</strong> As marcas Prism e Dark Room nunca se fundem no mesmo símbolo; o endosso B2B usa divisória vertical de 1px a 60% de opacidade.
-              </li>
-            </ul>
           </article>
         </div>
       </section>
 
-      {/* 3. Sistema Cromático & Psicologia das Cores */}
+      {/* 3. Sistema Cromático & Exemplos Práticos */}
       <section className="section pt-0" aria-labelledby="bm-colors">
         <div className="container px-(--margin)">
           <article className="glass-strong max-w-4xl p-6 md:p-10">
             <h2 id="bm-colors" className="title-main text-2xl font-bold">
-              {isEn ? "3. Chromatic System & Color Psychology" : "3. Sistema Cromático e Psicologia das Cores"}
+              {isEn ? "Chromatic System & Practical Examples" : "Sistema Cromático e Exemplos de Aplicação"}
             </h2>
-            <p className="mt-3 text-sm text-(--text-secondary)">
-              {isEn
-                ? "Fixed left-to-right order (20% width each). Saturation and lightness follow Valdez & Mehrabian (PAD) and Elliot & Maier (Color-in-Context), replacing generic traffic-light green with Citrus Olive for finished projects."
-                : "Ordem fixa da esquerda para a direita (20% de largura cada). Saturação e luminosidade seguem o modelo PAD (Valdez & Mehrabian) e a Teoria da Cor em Contexto (Elliot & Maier), substituindo o verde genérico por Citrus Olive em projetos finalizados."}
-            </p>
             <SpectrumRule className="mt-5" />
             <div className="mt-5 grid gap-3">
               {SPECTRUM_ROLES.map((item, idx) => (
@@ -214,37 +240,74 @@ export function BrandManualView() {
               ))}
             </div>
 
-            <div className="mt-6 rounded-(--radius) border border-(--rule-soft) p-4 text-xs text-(--text-secondary)">
-              <strong>{isEn ? "Serious / B2B & Accessibility:" : "Contexto Sério / B2B e Acessibilidade:"}</strong>{" "}
-              {isEn
-                ? "For contracts and formal pages, use monochrome neutrals with minimal Prism Cyan accents. Because bright spectrum colors fail WCAG AA text contrast on Marfim, use dedicated --ink-* tokens for body links/labels and reserve Intense Magenta for primary CTAs."
-                : "Em contratos e páginas formais B2B, priorize monocromia com acento mínimo de Prism Cyan. Como os tons vivos da fita reprovam em contraste WCAG AA sobre Marfim, use os tokens --ink-* para textos e reserve Intense Magenta para CTAs decisivos."}
+            <h3 className="mt-8 font-mono text-xs uppercase tracking-[0.14em] text-(--text-muted)">
+              {isEn ? "Sample Posts & UI States" : "Exemplos Práticos (Posts e Estados de UI)"}
+            </h3>
+            <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4" style={{ background: NEUTRAL.marfim, color: NEUTRAL.graphic }}>
+                <div className="font-mono text-[11px] font-semibold" style={{ color: SPECTRUM.cyan }}>COMUNICADO · PRISM CYAN</div>
+                <div className="mt-1.5 font-bold">Cartograph v1.4</div>
+                <p className="mt-1 text-xs" style={{ color: NEUTRAL.slate }}>Metabusca científica em 27 bases abertas.</p>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4" style={{ background: NEUTRAL.marfim, color: NEUTRAL.graphic }}>
+                <span className="inline-block rounded px-2 py-0.5 font-mono text-[10px] font-bold" style={{ background: SPECTRUM.olive, color: NEUTRAL.graphic }}>
+                  FINALIZADO · CITRUS OLIVE
+                </span>
+                <div className="mt-1.5 font-bold">Prism Translate</div>
+                <p className="mt-1 text-xs" style={{ color: NEUTRAL.slate }}>Substitui o verde genérico em entregas concluídas.</p>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4" style={{ background: NEUTRAL.marfim, color: NEUTRAL.graphic }}>
+                <span className="inline-block rounded px-2 py-0.5 font-mono text-[10px] font-bold" style={{ background: SPECTRUM.yellow, color: NEUTRAL.graphic }}>
+                  EM CURSO · SOLAR YELLOW
+                </span>
+                <div className="mt-1.5 font-bold">Pokéwalker Companion</div>
+                <p className="mt-1 text-xs" style={{ color: NEUTRAL.slate }}>Prévia beta e telemetria experimental.</p>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4" style={{ background: NEUTRAL.marfim, color: NEUTRAL.graphic }}>
+                <span className="inline-block rounded px-2 py-0.5 font-mono text-[10px] font-bold" style={{ background: SPECTRUM.orange, color: NEUTRAL.graphic }}>
+                  RELEASE v2.4 · WARM ORANGE
+                </span>
+                <div className="mt-1.5 font-bold">Changelog &amp; Hardware</div>
+                <p className="mt-1 text-xs" style={{ color: NEUTRAL.slate }}>Build nativo e marcos de versão.</p>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4" style={{ background: NEUTRAL.tape, color: METAL.highlight }}>
+                <div className="font-mono text-[11px] font-semibold" style={{ color: SPECTRUM.magenta }}>LANÇAMENTO · INTENSE MAGENTA</div>
+                <div className="mt-1.5 font-bold">Novo Portal Prism</div>
+                <p className="mt-1 text-xs" style={{ color: METAL.core }}>Post de impacto com monograma noturno.</p>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4" style={{ background: NEUTRAL.tape, color: METAL.highlight }}>
+                <div className="font-mono text-[11px]" style={{ color: METAL.transition }}>DARK ROOM · DR-001</div>
+                <div className="mt-1.5 font-bold">LimboOS Archive</div>
+                <p className="mt-1 text-xs" style={{ color: METAL.core }}>Atmosfera com espectro sombrio velado.</p>
+              </div>
             </div>
           </article>
         </div>
       </section>
 
-      {/* 4. Tipografia & Mídia Física */}
+      {/* 4. Tipografia Aplicada & Mídia Física */}
       <section className="section pt-0" aria-labelledby="bm-type">
         <div className="container px-(--margin)">
           <article className="glass-strong max-w-4xl p-6 md:p-10">
             <h2 id="bm-type" className="title-main text-2xl font-bold">
-              {isEn ? "4. Typography & Physical Media" : "4. Tipografia e Mídia Física"}
+              {isEn ? "Applied Typography & Physical Media" : "Tipografia Aplicada e Mídia Física"}
             </h2>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-(--radius) border border-(--rule-soft) p-4">
-                <div className="font-mono text-xs text-(--text-muted)">UI &amp; EDITORIAL</div>
-                <div className="mt-1 text-lg font-bold tracking-wide text-(--text-primary)">Geist / Inter</div>
-                <p className="mt-2 text-xs text-(--text-secondary)">
-                  Prism: caixa-alta em títulos (+0.04em a +0.08em, peso 700–800). Dark Room: caixa-alta compacta (-0.01em).
+              <div className="rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.marfim, color: NEUTRAL.graphic }}>
+                <div className="text-xl font-extrabold uppercase tracking-[0.06em]">
+                  PRISM TÍTULO 800
+                </div>
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: NEUTRAL.slate }}>
+                  Geist / Inter Regular 400: leitura corrida sobre Marfim Vintage com contraste editorial.
                 </p>
               </div>
-              <div className="rounded-(--radius) border border-(--rule-soft) p-4">
-                <div className="font-mono text-xs text-(--text-muted)">TELEMETRY &amp; CODES</div>
-                <div className="mt-1 font-mono text-lg font-semibold text-(--text-primary)">JetBrains Mono</div>
-                <p className="mt-2 text-xs text-(--text-secondary)">
-                  Códigos `DR-XXX`, versões, coordenadas HEX, registros técnicos e especificações de engenharia.
-                </p>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.tape, color: METAL.highlight }}>
+                <div className="text-xl font-bold uppercase tracking-[-0.01em]">
+                  DARK ROOM -0.01EM
+                </div>
+                <div className="mt-3 font-mono text-sm" style={{ color: SPECTRUM.cyan }}>
+                  JetBrains Mono: DR-001 · {SPECTRUM.cyan} · {NEUTRAL.tape}
+                </div>
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-3 text-xs text-(--text-secondary)">
@@ -267,7 +330,7 @@ export function BrandManualView() {
         <div className="container px-(--margin)">
           <article className="glass-strong max-w-4xl p-6 md:p-10">
             <h2 id="bm-comms" className="title-main text-2xl font-bold">
-              {isEn ? "5. External & Internal Communication" : "5. Comunicação Externa e Interna"}
+              {isEn ? "External & Internal Communication" : "Comunicação Externa e Interna"}
             </h2>
             <p className="mt-3 text-sm text-(--text-secondary)">
               {isEn
@@ -309,7 +372,7 @@ export function BrandManualView() {
         <div className="container px-(--margin)">
           <article className="glass-strong max-w-4xl p-6 md:p-10">
             <h2 id="bm-dr-apps" className="title-main text-2xl font-bold">
-              {isEn ? "6. Dark Room Module & Applications" : "6. Módulo Dark Room — Aplicativos e Produtos"}
+              {isEn ? "Dark Room Module & Applications" : "Módulo Dark Room — Aplicativos e Produtos"}
             </h2>
             <p className="mt-3 text-sm text-(--text-secondary)">
               {isEn

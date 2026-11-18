@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SPECTRUM, SPECTRUM_ORDER, VEIL } from "../src/lib/brandTokens.ts";
+import { INK, SPECTRUM, SPECTRUM_ORDER, VEIL } from "../src/lib/brandTokens.ts";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const SRC = join(ROOT, "src");
@@ -93,6 +93,16 @@ for (const [name, value] of Object.entries(SPECTRUM)) {
 for (const [name, value] of Object.entries(VEIL)) {
   if (cssVar(`veil-${name}`) !== value) {
     report("src/app/globals.css", 0, "espelho CSS ≠ brandTokens", `--veil-${name}: ${cssVar(`veil-${name}`)} ≠ ${value}`);
+  }
+}
+
+for (const [phase, set] of Object.entries(INK)) {
+  for (const [name, value] of Object.entries(set)) {
+    const found = [...css.matchAll(new RegExp(`--ink-${name}:\\s*(#[0-9a-f]{6})`, "gi"))].map((m) => m[1].toUpperCase());
+    const css_value = found[phase === "prism" ? 0 : 1];
+    if (css_value !== value) {
+      report("src/app/globals.css", 0, "espelho CSS ≠ brandTokens", `--ink-${name} (${phase}): ${css_value} ≠ ${value}`);
+    }
   }
 }
 
