@@ -125,7 +125,7 @@ export function BrandManualView() {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-between rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.tape }}>
-                <DarkRoomLogo className="h-auto w-full max-w-[220px]" door={0} interior={false} />
+                <DarkRoomLogo className="h-auto w-full max-w-[220px]" />
                 <div className="mt-4">
                   <div className="text-sm font-semibold" style={{ color: METAL.highlight }}>Dark Room (DR 22% radius)</div>
                   <div className="text-xs" style={{ color: METAL.transition }}>
