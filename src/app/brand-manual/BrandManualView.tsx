@@ -8,6 +8,7 @@ import { DarkRoomLogo } from "@/components/logos/DarkRoomLogo";
 import { SpectrumRule } from "@/components/logos/SpectrumRule";
 import { METAL, NEUTRAL, SPECTRUM, SPECTRUM_ROLES, VEIL } from "@/lib/brandTokens";
 import { useLocale } from "@/components/LocaleProvider";
+import { withBase } from "@/lib/site";
 
 const DARK_ROOM_COLORS = [
   { name: "Abyssal Cyan", hex: VEIL.cyan, role: "Isolamento estéril, ambiente frio e estados dormentes" },
@@ -34,7 +35,7 @@ export function BrandManualView() {
           <SpectrumRule className="mt-5" />
           <div className="mt-6 flex flex-wrap gap-3">
             <a
-              href="/prism-darkroom-brand-manual.pdf"
+              href={withBase("/prism-darkroom-brand-manual.pdf")}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"

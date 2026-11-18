@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SpectrumRule } from "@/components/logos/SpectrumRule";
 import { useLocale } from "@/components/LocaleProvider";
 import { NEUTRAL, SPECTRUM_ROLES } from "@/lib/brandTokens";
+import { withBase } from "@/lib/site";
 
 export function AboutView() {
   const { t } = useLocale();
@@ -136,7 +137,7 @@ export function AboutView() {
                 {a.manualOpenSite}
               </Link>
               <a
-                href="/prism-darkroom-brand-manual.pdf"
+                href={withBase("/prism-darkroom-brand-manual.pdf")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-ghost"
