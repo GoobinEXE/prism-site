@@ -117,11 +117,22 @@ export function AboutView() {
             </ul>
 
             <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/brand-manual" className="btn btn-primary">
+                {a.manualOpenSite}
+              </Link>
+              <a
+                href="/prism-darkroom-brand-manual.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+              >
+                {a.manualOpenPdf}
+              </a>
               <a
                 href="/brand-manual.md"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary"
+                className="btn btn-ghost"
               >
                 {a.manualOpenFull}
               </a>

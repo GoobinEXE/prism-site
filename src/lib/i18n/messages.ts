@@ -93,6 +93,8 @@ export type Messages = {
     manualDarkSubstrate: string;
     manualSpectrumTitle: string;
     manualOpenFull: string;
+    manualOpenSite: string;
+    manualOpenPdf: string;
     manualOpenPsychology: string;
   };
   behind: {
@@ -325,6 +327,8 @@ const en: Messages = {
     manualDarkSubstrate: "Magnetic Black — deep analog floor without sterile 100% black",
     manualSpectrumTitle: "Canonical Spectrum (L→R · 20% each)",
     manualOpenFull: "Read full brand manual (.md)",
+    manualOpenSite: "Open full manual on site",
+    manualOpenPdf: "Open 20-page PDF",
     manualOpenPsychology: "Color psychology guide (.md)",
   },
   behind: {
@@ -627,6 +631,8 @@ const pt: Messages = {
     manualDarkSubstrate: "Preto Magnético — piso escuro profundo sem preto 100% estéril",
     manualSpectrumTitle: "Fita Espectral Canônica (E→D · 20% cada)",
     manualOpenFull: "Abrir manual completo (.md)",
+    manualOpenSite: "Ver manual completo no site",
+    manualOpenPdf: "Abrir PDF (20 páginas)",
     manualOpenPsychology: "Guia de psicologia das cores (.md)",
   },
   behind: {
