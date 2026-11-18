@@ -3,8 +3,16 @@
 import Link from "next/link";
 import { SpectrumRule } from "@/components/logos/SpectrumRule";
 import { useLocale } from "@/components/LocaleProvider";
-import { NEUTRAL, SPECTRUM_ROLES } from "@/lib/brandTokens";
+import { NEUTRAL, SPECTRUM_ROLES, VEIL } from "@/lib/brandTokens";
 import { withBase } from "@/lib/site";
+
+const DARK_ROOM_SPECTRUM = [
+  { name: "Abyssal Cyan", hex: VEIL.cyan, role: "Isolamento estéril e estados dormentes" },
+  { name: "Corrosive Olive", hex: VEIL.olive, role: "Estagnação e registros legados" },
+  { name: "Tarnished Amber", hex: VEIL.yellow, role: "Vigilância e atenção latente" },
+  { name: "Burnt Oxide Orange", hex: VEIL.orange, role: "Desgaste mecânico e hardware sob carga" },
+  { name: "Coagulated Magenta", hex: VEIL.magenta, role: "Luz inactínica e ruptura narrativa" },
+] as const;
 
 export function AboutView() {
   const { t } = useLocale();
@@ -106,6 +114,26 @@ export function AboutView() {
                   <div className="flex items-center gap-3">
                     <span
                       className="h-3.5 w-3.5 shrink-0 rounded-full"
+                      style={{ background: item.hex }}
+                      aria-hidden="true"
+                    />
+                    <span className="font-medium text-(--text-primary)">{item.name}</span>
+                    <span className="font-mono text-xs text-(--text-muted)">{item.hex}</span>
+                  </div>
+                  <span className="text-right text-xs text-(--text-secondary)">{item.role}</span>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="mt-8 font-mono text-xs uppercase tracking-[0.14em] text-(--text-muted)">
+              {a.manualDarkSpectrumTitle}
+            </h3>
+            <ul className="mt-3 divide-y divide-(--rule-soft)">
+              {DARK_ROOM_SPECTRUM.map((item) => (
+                <li key={item.hex} className="flex items-center justify-between gap-4 py-2 text-sm">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="h-3.5 w-3.5 shrink-0 rounded-full border border-(--rule-soft)"
                       style={{ background: item.hex }}
                       aria-hidden="true"
                     />

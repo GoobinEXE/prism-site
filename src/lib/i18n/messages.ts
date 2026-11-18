@@ -92,6 +92,7 @@ export type Messages = {
     manualPrismSubstrate: string;
     manualDarkSubstrate: string;
     manualSpectrumTitle: string;
+    manualDarkSpectrumTitle: string;
     manualLogosTitle: string;
     manualLogosSummary: string;
     manualTypeTitle: string;
@@ -327,7 +328,8 @@ const en: Messages = {
     manualSubstrates: "Substrates",
     manualPrismSubstrate: "Vintage Ivory — clean-room clarity for software, docs, and B2B",
     manualDarkSubstrate: "Magnetic Black — deep analog floor without sterile 100% black",
-    manualSpectrumTitle: "Canonical Spectrum (L→R · 20% each)",
+    manualSpectrumTitle: "Prism Spectrum (L→R · 20% each)",
+    manualDarkSpectrumTitle: "Dark Room Spectrum (Veiled Polarity)",
     manualLogosTitle: "Logos, Icon Scales & Clear Space",
     manualLogosSummary:
       "Master Prism (>120px, 1X clear space), P monogram (16–119px, height of P), and Dark Room DR icon (22% radius on Magnetic Black, width of D).",
@@ -335,7 +337,7 @@ const en: Messages = {
     manualTypeSummary:
       "Geist / Inter uppercase titles (+0.04em to +0.08em Prism; -0.01em Dark Room), JetBrains Mono for codes, cotton stationery, and VHS packaging.",
     manualOpenSite: "Open full manual",
-    manualOpenPdf: "Open 21-page PDF",
+    manualOpenPdf: "Open 22-page PDF",
   },
   behind: {
     title: "Who's behind Prism",
@@ -635,7 +637,8 @@ const pt: Messages = {
     manualSubstrates: "Substratos",
     manualPrismSubstrate: "Marfim Vintage — clareza editorial para software, documentação e B2B",
     manualDarkSubstrate: "Preto Magnético — piso escuro profundo sem preto 100% estéril",
-    manualSpectrumTitle: "Fita Espectral Canônica (E→D · 20% cada)",
+    manualSpectrumTitle: "Fita Espectral Prism (E→D · 20% cada)",
+    manualDarkSpectrumTitle: "Espectro Sombrio Dark Room",
     manualLogosTitle: "Logotipos, Escalas de Ícone e Respiro",
     manualLogosSummary:
       "Master Prism (>120px, respiro 1X), monograma P (16–119px, altura do P) e ícone Dark Room DR (raio 22% sobre Preto Magnético, largura do D).",
@@ -643,7 +646,7 @@ const pt: Messages = {
     manualTypeSummary:
       "Geist / Inter em caixa-alta (+0,04em a +0,08em Prism; -0,01em Dark Room), JetBrains Mono para códigos, papel algodão e embalagens VHS.",
     manualOpenSite: "Ver manual completo",
-    manualOpenPdf: "Abrir PDF (21 páginas)",
+    manualOpenPdf: "Abrir PDF (22 páginas)",
   },
   behind: {
     title: "Quem está por trás do Prism",

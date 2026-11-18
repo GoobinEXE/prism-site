@@ -40,7 +40,7 @@ export function BrandManualView() {
               rel="noopener noreferrer"
               className="btn btn-primary"
             >
-              {isEn ? "Open 21-page PDF" : "Abrir PDF (21 páginas)"}
+              {isEn ? "Open 22-page PDF" : "Abrir PDF (22 páginas)"}
             </a>
             <Link href="/about" className="btn btn-ghost">
               {isEn ? "Back to About" : "Voltar para Sobre"}
@@ -125,7 +125,7 @@ export function BrandManualView() {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-between rounded-(--radius) border border-(--rule-soft) p-5" style={{ background: NEUTRAL.tape }}>
-                <DarkRoomLogo className="h-16 w-auto" />
+                <DarkRoomLogo className="h-auto w-full max-w-[220px]" door={0} interior={false} />
                 <div className="mt-4">
                   <div className="text-sm font-semibold" style={{ color: METAL.highlight }}>Dark Room (DR 22% radius)</div>
                   <div className="text-xs" style={{ color: METAL.transition }}>
@@ -286,6 +286,72 @@ export function BrandManualView() {
                   <li><strong>Decisões Críticas e Incidentes:</strong> Intense Magenta (diretoria) e Signal Crimson (falha severa).</li>
                 </ul>
               </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* 6. Módulo Dark Room — Aplicativos e Produtos */}
+      <section className="section pt-0" aria-labelledby="bm-dr-apps">
+        <div className="container px-(--margin)">
+          <article className="glass-strong max-w-4xl p-6 md:p-10">
+            <h2 id="bm-dr-apps" className="title-main text-2xl font-bold">
+              {isEn ? "6. Dark Room Module & Applications" : "6. Módulo Dark Room — Aplicativos e Produtos"}
+            </h2>
+            <p className="mt-3 text-sm text-(--text-secondary)">
+              {isEn
+                ? "Public Dark Room releases use the monochrome mark on Magnetic Black without the Prism beam; B2B agreements add the Prism endorsement."
+                : "Os aplicativos e jogos da Dark Room operam em monomarca monocromática sem feixe espectral; apenas contratos B2B recebem a chancela Prism."}
+            </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4">
+                <div className="flex items-center justify-between font-mono text-xs text-(--text-muted)">
+                  <span>DR-001</span>
+                  <span className="led led-olive" aria-hidden="true" />
+                </div>
+                <div className="mt-1 font-semibold text-(--text-primary)">LimboOS</div>
+                <p className="mt-1 text-xs text-(--text-secondary)">
+                  Sistema diegético em terminal e carro-chefe da divisão Dark Room.
+                </p>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4">
+                <div className="flex items-center justify-between font-mono text-xs text-(--text-muted)">
+                  <span>DR-002</span>
+                  <span className="led led-olive" aria-hidden="true" />
+                </div>
+                <div className="mt-1 font-semibold text-(--text-primary)">Route 1 Kit</div>
+                <p className="mt-1 text-xs text-(--text-secondary)">
+                  Ferramenta técnica e kit de desenvolvimento para romhacking clássico.
+                </p>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4">
+                <div className="flex items-center justify-between font-mono text-xs text-(--text-muted)">
+                  <span>DR-003</span>
+                  <span className="led led-yellow" aria-hidden="true" />
+                </div>
+                <div className="mt-1 font-semibold text-(--text-primary)">Pokéwalker Companion</div>
+                <p className="mt-1 text-xs text-(--text-secondary)">
+                  Aplicativo utilitário para hardware portátil e telemetria dedicada.
+                </p>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-4">
+                <div className="flex items-center justify-between font-mono text-xs text-(--text-muted)">
+                  <span>DR-004</span>
+                  <span className="led led-olive" aria-hidden="true" />
+                </div>
+                <div className="mt-1 font-semibold text-(--text-primary)">VidelBOT</div>
+                <p className="mt-1 text-xs text-(--text-secondary)">
+                  Automação e interface conversacional para operação em comunidade.
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/dark-room" className="btn btn-magenta">
+                {isEn ? "Open Dark Room module" : "Abrir módulo Dark Room"}
+              </Link>
+              <Link href="/work" className="btn btn-ghost">
+                {isEn ? "View Prism applications" : "Ver aplicativos Prism"}
+              </Link>
             </div>
           </article>
         </div>
