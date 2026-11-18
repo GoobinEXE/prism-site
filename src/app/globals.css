@@ -311,9 +311,8 @@ a {
   height: var(--prism-mark-h);
 }
 
-[data-phase="dark-room"] .brand-lockup__mark {
-  padding: 0.3rem 0.35rem;
-  background: #f2ece1;
+[data-phase="dark-room"] .brand-lockup__mark [data-p-glyph] {
+  fill: #f2ece1;
 }
 
 .brand-lockup__rule {
@@ -351,7 +350,7 @@ a {
 
 /* ─── Painéis chapados: filete no Prism, borda dura na Dark Room ─── */
 .glass-elevated {
-  background: var(--glass-elevated);
+  background: var(--glass-elevated) var(--grain-elevated) 0 0 / var(--grain-size);
   box-shadow: var(--panel-shadow-strong);
 }
 
@@ -371,13 +370,13 @@ a {
 }
 
 .glass-strong {
-  background: var(--glass-elevated);
+  background: var(--glass-elevated) var(--grain-elevated) 0 0 / var(--grain-size);
   box-shadow: var(--panel-shadow-strong);
 }
 
 .glass-spectrum {
   position: relative;
-  background: var(--glass);
+  background: var(--glass) var(--grain-glass) 0 0 / var(--grain-size);
   border-radius: var(--radius-lg);
   box-shadow: var(--panel-shadow);
   isolation: isolate;
@@ -648,7 +647,7 @@ a {
 .dr-entry {
   display: flex;
   flex-direction: column;
-  background: #141820;
+  background: #141820 var(--grain-dark-room-glass) 0 0 / var(--grain-size);
   box-shadow: var(--hard-shadow);
 }
 
@@ -711,6 +710,36 @@ a {
   background: #1a1c1f;
   box-shadow: 3px 3px 0 #000;
   transform: translate(-1px, -1px);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--grain-bg);
+  background-repeat: repeat;
+  background-size: var(--grain-size);
+}
+
+:root,
+[data-phase="prism"] {
+  --grain-size: 250px 250px;
+  --grain-bg: var(--grain-prism-bg);
+  --grain-glass: var(--grain-prism-glass);
+  --grain-elevated: var(--grain-prism-elevated);
+}
+
+[data-phase="dark-room"] {
+  --grain-bg: var(--grain-dark-room-bg);
+  --grain-glass: var(--grain-dark-room-glass);
+  --grain-elevated: var(--grain-dark-room-elevated);
+}
+
+@media print {
+  .grain {
+    display: none;
+  }
 }
 
 /* Chamber overlay */

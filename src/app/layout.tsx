@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import type { CSSProperties } from "react";
 import Script from "next/script";
-import { basePath, siteUrl } from "@/lib/site";
+import { basePath, siteUrl, withBase } from "@/lib/site";
+import { brandAssets } from "@/lib/brandAssets";
 import { localeBootScript } from "@/lib/i18n/locale";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
@@ -71,12 +73,20 @@ export const viewport: Viewport = {
   ],
 };
 
+const grainVars = Object.fromEntries(
+  Object.entries(brandAssets.overlays.grain).map(([key, path]) => [
+    `--grain-${key}`,
+    `url(${withBase(path)})`,
+  ]),
+) as CSSProperties;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
       data-phase="prism"
       className={`${geist.variable} ${jetbrains.variable} h-full antialiased`}
+      style={grainVars}
       suppressHydrationWarning
     >
       <head>
@@ -108,6 +118,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <ContactFab />
           </ChamberProvider>
         </LocaleProvider>
+        <div aria-hidden="true" className="grain" />
       </body>
     </html>
   );

@@ -78,7 +78,7 @@ Valores: `prism` | `dark-room` no `<html>`.
 - Bootstrap da fase via `next/script` `beforeInteractive` no `layout.tsx` raiz (cobre `/dark-room`); não colocar `<script>` inline em layouts aninhados, o React acusa erro na navegação.
 - `ThemeSync` sincroniza fase ao pathname; respeita overlay da câmara ativo.
 - Na home, `DarkRoomPortal` troca fase pelo tempo da timeline do scrub (`T.phase`, quando a camada preta cobre a tela).
-- Tokens CSS: bloco `[data-phase="prism"]` (Marfim chapado) vs `[data-phase="dark-room"]` (carvão / magenta / CRT). O site inteiro é chapado: sem degradê, blur, vidro, glow, ruído ou scanline (textura fica para depois, por decisão do autor). Sombra só dura e sem desfoque, só na Dark Room (`--hard-shadow: 4px 4px 0 #000`); cantos `--radius` 2–4px no Prism e 0 na Dark Room.
+- Tokens CSS: bloco `[data-phase="prism"]` (Marfim chapado) vs `[data-phase="dark-room"]` (carvão / magenta / CRT). O site inteiro é chapado: sem degradê, blur, vidro, glow ou scanline. Única textura: o grão, embutido nas superfícies em vez de sobreposto. Cada superfície chapada tem um tile opaco 250×250 com a cor exata do token ± ruído de média zero (`public/assets/brand/overlays/grain-{prism,dark-room}-{bg,glass,elevated}.png`, gerados por `python3 scripts/gen-grain.py`). A distribuição do ruído copia a medida da referência indieground.net (só 17% dos pixels sem desvio, −3 a +8 níveis); o arquivo deles não é usado. O fundo usa a div fixa `.grain` (`z-index: -1`, atrás do conteúdo); `.glass-spectrum`, `.glass-strong`, `.glass-elevated` e `.dr-entry` levam o tile no próprio `background`. As URLs passam por `withBase` em variáveis `--grain-*` no `<html>` (`layout.tsx`); `--grain-bg`, `--grain-glass` e `--grain-elevated` trocam por fase. Sem `mix-blend-mode` nem opacidade: no Chrome o overlay desloca o tom. Mudou a cor de uma superfície, regere o tile. Sombra só dura e sem desfoque, só na Dark Room (`--hard-shadow: 4px 4px 0 #000`); cantos `--radius` 2–4px no Prism e 0 na Dark Room.
 
 Travessia de fase entre rotas: `ChamberLink` + `ChamberProvider` + `playChamberTimeline` (`src/lib/chamberTimeline.ts`). Overlay de porta com carimbo ENTERING / ENTRANDO e LEAVING / SAINDO em `#8F9397` (~1.45s; reduced motion ~240ms). Nenhuma cor da fita aparece junto do logo Dark Room no overlay.
 
@@ -155,7 +155,7 @@ Vetores oficiais (manual de marca, `~/Downloads/prism-darkroom-brand-manual.pdf`
 
 - Símbolo master: `PrismSymbol` (`src/components/logos/`), arquivo `public/assets/brand/prism-symbol.svg`. Hero da home. Feixe incidente recolorido para `#8F9397` (no original é branco e some sobre fundo claro); prop `bleed` estende o feixe para fora do viewBox.
 - Monograma P: `PrismMonogram` (`src/components/logos/`), arquivo `public/assets/brand/prism-monogram-p.svg`. Favicon em `src/app/icon.svg` (squircle Marfim `#F2ECE1`).
-- Lockup horizontal: `PrismLockup` (P, filete vertical de 1px em `--rule` a 60%, wordmark PRISM em Geist 700 caixa-alta) no header e no footer. Glifo sempre `#0D0F13`; na fase Dark Room o P ganha placa Marfim com raio de 22%.
+- Lockup horizontal: `PrismLockup` (P, filete vertical de 1px em `--rule` a 60%, wordmark PRISM em Geist 700 caixa-alta) no header e no footer. Glifo `#0D0F13` no Prism; na fase Dark Room o lockup usa o P noturno (glifo Marfim `#F2ECE1` direto sobre o fundo, sem placa), via CSS em `[data-p-glyph]`.
 - Monograma P noturno: em peças gráficas e posts sobre fundo escuro (`#090A0C`), o glifo vai em Marfim `#F2ECE1` direto sobre o fundo, sem placa e nunca em branco puro; a fita de cinco cores permanece nos valores canônicos. Exemplo: `docs/posts/prism-comunicado-dark.png`. O lockup não leva nenhuma menção à Dark Room.
 - Chancela: "Dark Room · Um Estúdio Prism" só como texto na linha legal do footer (rodapé de governança, manual §7.1).
 - Zonas de respiro: `.brand-lockup` reserva a altura do P (`--prism-mark-h`) antes do próximo elemento; `.clear-dark-room` reserva a largura do D (0,223 × altura do logo) abaixo do logo.
@@ -173,7 +173,8 @@ public/assets/brand/
   originals/                    (exports do autor: image.svg, prism-symbol.svg, prism-monogram-p.svg, dark-room-logo-states.svg)
   hero-prism-atmosphere.jpg     ← sem uso no código (og:image agora é gerada)
   door-chamber-gate.jpg         ← archive
-  overlays/                     (grain, scanlines — prompts prontos)
+  overlays/grain-*.png          ← shipped (6 tiles de grão por superfície, `scripts/gen-grain.py`)
+  overlays/                     (scanlines — prompt pronto)
   accents/                      (caustic, ribbon — prompts prontos)
 ```
 
