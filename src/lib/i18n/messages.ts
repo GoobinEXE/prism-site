@@ -86,6 +86,14 @@ export type Messages = {
     darkP: string;
     visit: string;
     seeWork: string;
+    manualTitle: string;
+    manualLead: string;
+    manualSubstrates: string;
+    manualPrismSubstrate: string;
+    manualDarkSubstrate: string;
+    manualSpectrumTitle: string;
+    manualOpenFull: string;
+    manualOpenPsychology: string;
   };
   behind: {
     title: string;
@@ -309,6 +317,15 @@ const en: Messages = {
       "Dark Room is where the games and the more experimental projects live. The name comes from the photographer's darkroom: things sit in there and develop slowly, until they're ready to come out.",
     visit: "Visit the Dark Room",
     seeWork: "See our work",
+    manualTitle: "Brand Manual",
+    manualLead:
+      "The Prism and Dark Room visual system operates across opposite luminous polarities, preserving a fixed five-color spectral order and strict semantic roles.",
+    manualSubstrates: "Substrates",
+    manualPrismSubstrate: "Vintage Ivory — clean-room clarity for software, docs, and B2B",
+    manualDarkSubstrate: "Magnetic Black — deep analog floor without sterile 100% black",
+    manualSpectrumTitle: "Canonical Spectrum (L→R · 20% each)",
+    manualOpenFull: "Read full brand manual (.md)",
+    manualOpenPsychology: "Color psychology guide (.md)",
   },
   behind: {
     title: "Who's behind Prism",
@@ -602,6 +619,15 @@ const pt: Messages = {
       "A Dark Room é onde ficam os jogos e os projetos mais experimentais. O nome vem da câmara escura da fotografia: as coisas ficam lá dentro sendo reveladas com calma, até estarem prontas para sair.",
     visit: "Visitar a Dark Room",
     seeWork: "Ver o trabalho",
+    manualTitle: "Manual da Marca",
+    manualLead:
+      "O sistema visual da Prism e da Dark Room opera em polaridades luminosas opostas, mantendo uma fita espectral fixa de cinco cores com papéis semânticos definidos.",
+    manualSubstrates: "Substratos",
+    manualPrismSubstrate: "Marfim Vintage — clareza editorial para software, documentação e B2B",
+    manualDarkSubstrate: "Preto Magnético — piso escuro profundo sem preto 100% estéril",
+    manualSpectrumTitle: "Fita Espectral Canônica (E→D · 20% cada)",
+    manualOpenFull: "Abrir manual completo (.md)",
+    manualOpenPsychology: "Guia de psicologia das cores (.md)",
   },
   behind: {
     title: "Quem está por trás do Prism",
