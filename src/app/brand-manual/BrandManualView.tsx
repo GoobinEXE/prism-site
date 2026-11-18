@@ -182,7 +182,7 @@ export function BrandManualView() {
             </div>
 
             <h3 className="mt-8 font-mono text-xs uppercase tracking-[0.14em] text-(--text-muted)">
-              {isEn ? "Dark Room Veiled Spectrum (on Magnetic Black)" : "Espectro Sombrio Dark Room (sobre Preto Magnético)"}
+              {isEn ? "Dark Room Veiled Spectrum" : "Espectro Sombrio Dark Room"}
             </h3>
             <div className="mt-3 grid gap-2">
               {DARK_ROOM_COLORS.map((item) => (
@@ -243,6 +243,48 @@ export function BrandManualView() {
               <span className="rounded-(--radius) border border-(--rule-soft) px-3 py-1.5">
                 Selo de Projeto Finalizado: Citrus Olive ({SPECTRUM.olive})
               </span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* 5. Comunicação Externa e Interna */}
+      <section className="section pt-0" aria-labelledby="bm-comms">
+        <div className="container px-(--margin)">
+          <article className="glass-strong max-w-4xl p-6 md:p-10">
+            <h2 id="bm-comms" className="title-main text-2xl font-bold">
+              {isEn ? "5. External & Internal Communication" : "5. Comunicação Externa e Interna"}
+            </h2>
+            <p className="mt-3 text-sm text-(--text-secondary)">
+              {isEn
+                ? "Color roles extend beyond the website to social media, press kits, B2B client proposals, and internal team workflows."
+                : "Os papéis cromáticos estendem-se para além do site: redes sociais, campanhas, relacionamento com clientes B2B e operação interna da equipe."}
+            </p>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <div className="rounded-(--radius) border border-(--rule-soft) p-5">
+                <div className="font-mono text-xs uppercase tracking-[0.12em] text-(--text-muted)">
+                  {isEn ? "External · Social & Campaigns" : "Externa · Redes Sociais e Campanhas"}
+                </div>
+                <ul className="mt-3 space-y-2 text-xs text-(--text-secondary)">
+                  <li><strong>Prism Cyan:</strong> comunicados técnicos, links e dados em posts institucionais.</li>
+                  <li><strong>Intense Magenta:</strong> lançamentos, capas de vídeo e CTAs de alto impacto.</li>
+                  <li><strong>Warm Orange:</strong> changelogs, tags de versão e bastidores de hardware.</li>
+                  <li><strong>Citrus Olive:</strong> projetos finalizados, entregas e selos de maturidade.</li>
+                  <li><strong>Solar Yellow:</strong> teasers, prévias beta e avisos rápidos de agenda.</li>
+                  <li><strong>Espectro Dark Room:</strong> trailers, Discord e comunidade de jogos.</li>
+                </ul>
+              </div>
+              <div className="rounded-(--radius) border border-(--rule-soft) p-5">
+                <div className="font-mono text-xs uppercase tracking-[0.12em] text-(--text-muted)">
+                  {isEn ? "Internal · Clients & Team" : "Interna · Clientes e Equipe"}
+                </div>
+                <ul className="mt-3 space-y-2 text-xs text-(--text-secondary)">
+                  <li><strong>Contratos e Propostas B2B:</strong> monocromia sobre Marfim com acento mínimo em Prism Cyan (sem Magenta).</li>
+                  <li><strong>Fluxo de Sprint / Docs:</strong> Prism Cyan (ativo) e Citrus Olive (homologado).</li>
+                  <li><strong>Pendências e Releases:</strong> Solar Yellow (revisão) e Warm Orange (deploy/build).</li>
+                  <li><strong>Decisões Críticas e Incidentes:</strong> Intense Magenta (diretoria) e Signal Crimson (falha severa).</li>
+                </ul>
+              </div>
             </div>
           </article>
         </div>
