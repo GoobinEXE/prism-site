@@ -39,7 +39,7 @@ export function BrandManualView() {
               rel="noopener noreferrer"
               className="btn btn-primary"
             >
-              {isEn ? "Open 20-page PDF" : "Abrir PDF (20 páginas)"}
+              {isEn ? "Open 21-page PDF" : "Abrir PDF (21 páginas)"}
             </a>
             <Link href="/about" className="btn btn-ghost">
               {isEn ? "Back to About" : "Voltar para Sobre"}

@@ -335,7 +335,7 @@ const en: Messages = {
     manualTypeSummary:
       "Geist / Inter uppercase titles (+0.04em to +0.08em Prism; -0.01em Dark Room), JetBrains Mono for codes, cotton stationery, and VHS packaging.",
     manualOpenSite: "Open full manual",
-    manualOpenPdf: "Open 20-page PDF",
+    manualOpenPdf: "Open 21-page PDF",
   },
   behind: {
     title: "Who's behind Prism",
@@ -643,7 +643,7 @@ const pt: Messages = {
     manualTypeSummary:
       "Geist / Inter em caixa-alta (+0,04em a +0,08em Prism; -0,01em Dark Room), JetBrains Mono para códigos, papel algodão e embalagens VHS.",
     manualOpenSite: "Ver manual completo",
-    manualOpenPdf: "Abrir PDF (20 páginas)",
+    manualOpenPdf: "Abrir PDF (21 páginas)",
   },
   behind: {
     title: "Quem está por trás do Prism",
