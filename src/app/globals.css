@@ -1111,3 +1111,277 @@ html[data-portal-active] .site-header {
   }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   Brand Manual (/brand-manual) — Tela e Impressão A4 Paisagem
+   ═══════════════════════════════════════════════════════════ */
+
+.bm-root {
+  page: manual;
+}
+
+.bm-layout {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .bm-layout {
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+.bm-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bm-toc-sticky {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+}
+
+.bm-toc {
+  padding: 0.875rem;
+  border-radius: var(--radius-lg);
+  background: var(--glass);
+}
+
+.bm-toc__link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.42rem 0.55rem;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--text-secondary);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.bm-toc__link:hover,
+.bm-toc__link.is-active {
+  background: var(--glass-elevated);
+}
+
+.bm-toc__link.is-active {
+  font-weight: 600;
+}
+
+.bm-toc__num {
+  width: 1.25rem;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.bm-toc__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.bm-toc__page {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.bm-toc__downloads {
+  padding: 0.875rem;
+  border-radius: var(--radius-lg);
+  background: var(--glass);
+}
+
+.bm-toc__dl {
+  display: block;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius);
+  background: var(--glass-elevated);
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  transition: transform 0.15s ease;
+}
+
+.bm-toc__dl:hover {
+  transform: translateY(-1px);
+}
+
+.bm-toc-mobile {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+  scrollbar-width: thin;
+}
+
+.bm-toc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius);
+  background: var(--glass);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.bm-toc-chip.is-active {
+  background: var(--glass-elevated);
+  font-weight: 600;
+}
+
+.bm-page {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
+@media (min-width: 768px) {
+  .bm-page {
+    padding: 2.25rem;
+  }
+}
+
+.bm-page__body {
+  min-height: 0;
+}
+
+.bm-print-footer {
+  display: none;
+}
+
+@page manual {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  header,
+  .site-footer,
+  .contact-fab,
+  .skip-link,
+  .grain,
+  .bm-screen-only {
+    display: none !important;
+  }
+
+  html {
+    font-size: 10.5px;
+  }
+
+  body {
+    background: #f2ece1 !important;
+    color: #0d0f13 !important;
+  }
+
+  .bm-root {
+    page: manual;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .bm-root .section,
+  .bm-root .container {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .bm-layout {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .bm-main {
+    display: block !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .bm-page {
+    width: 297mm;
+    height: 209.5mm;
+    max-height: 209.5mm;
+    padding: 11mm 14mm !important;
+    margin: 0 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    break-after: page;
+    page-break-after: always;
+    overflow: hidden;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .bm-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .glass-strong,
+  .glass-elevated,
+  .glass-spectrum {
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  .glass-strong,
+  .glass-elevated {
+    background-color: #f6f2eb !important;
+  }
+
+  .glass-spectrum {
+    background-color: #eae3d6 !important;
+  }
+
+  .bm-page:not(.bm-page--dark):not(.bm-cover) {
+    background-color: #f2ece1 !important;
+    color: #0d0f13 !important;
+  }
+
+  .bm-page--dark {
+    background-color: #090a0c !important;
+    color: #f0f0f2 !important;
+  }
+
+  .bm-cover {
+    background-color: #f2ece1 !important;
+  }
+
+  .vhs-label::before {
+    display: block !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .bm-print-footer {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+

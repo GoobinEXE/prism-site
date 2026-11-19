@@ -78,27 +78,34 @@ export type Messages = {
     enter: string;
   };
   about: {
+    eyebrow: string;
     title: string;
-    why: string;
-    whyP1: string;
-    whyP2: string;
-    dark: string;
-    darkP: string;
+    lead: string;
+    principlesTitle: string;
+    principles: {
+      code: "01" | "02" | "03";
+      title: string;
+      body: string;
+    }[];
+    roomsTitle: string;
+    prismTitle: string;
+    prismBody: string;
+    darkTitle: string;
+    darkBody: string;
     visit: string;
     seeWork: string;
     manualTitle: string;
     manualLead: string;
-    manualSubstrates: string;
-    manualPrismSubstrate: string;
-    manualDarkSubstrate: string;
-    manualSpectrumTitle: string;
-    manualDarkSpectrumTitle: string;
-    manualLogosTitle: string;
-    manualLogosSummary: string;
-    manualTypeTitle: string;
-    manualTypeSummary: string;
-    manualOpenSite: string;
-    manualOpenPdf: string;
+    manualRead: string;
+    manualDownload: string;
+    manualCoverAlt: string;
+    bands: {
+      cyan: string;
+      olive: string;
+      yellow: string;
+      orange: string;
+      magenta: string;
+    };
   };
   behind: {
     title: string;
@@ -311,33 +318,49 @@ const en: Messages = {
     enter: "Enter the Dark Room",
   },
   about: {
+    eyebrow: "Independent studio · Curitiba, Brazil",
     title: "About Prism",
-    why: "Why Prism",
-    whyP1:
-      "A prism takes in one beam of light and sends out many colors. We work the same way: a problem and an idea go in, and the same mind comes out with several solutions.",
-    whyP2:
-      "That's where the mobile apps, the desktop software, the web apps and the Dark Room projects come from. Each one with its own character, all from the same place.",
-    dark: "What about Dark Room?",
-    darkP:
+    lead: "A prism takes in one beam of light and sends out many colors. We work the same way: a problem and an idea go in, and the same mind comes out with several solutions.",
+    principlesTitle: "How we work",
+    principles: [
+      {
+        code: "01",
+        title: "Same hands, start to finish",
+        body: "The person who designs it is the one who builds it and ships it, so nothing gets lost between handoffs.",
+      },
+      {
+        code: "02",
+        title: "Less to learn",
+        body: "We keep taking things out until what's left feels obvious. If it needs a tutorial, it isn't done yet.",
+      },
+      {
+        code: "03",
+        title: "Each one has its own face",
+        body: "Lumen and Cartograph look nothing alike. What they share is the care that went into them.",
+      },
+    ],
+    roomsTitle: "Two rooms, one studio",
+    prismTitle: "Prism",
+    prismBody:
+      "Mobile apps, desktop software and web apps. Clear, bright and made for everyday use.",
+    darkTitle: "Dark Room",
+    darkBody:
       "Dark Room is where the games and the more experimental projects live. The name comes from the photographer's darkroom: things sit in there and develop slowly, until they're ready to come out.",
     visit: "Visit the Dark Room",
     seeWork: "See our work",
-    manualTitle: "Brand Manual",
+    manualTitle: "Brand manual",
     manualLead:
-      "The Prism and Dark Room visual system operates across opposite luminous polarities, preserving a fixed five-color spectral order and strict semantic roles.",
-    manualSubstrates: "Substrates",
-    manualPrismSubstrate: "Vintage Ivory — clean-room clarity for software, docs, and B2B",
-    manualDarkSubstrate: "Magnetic Black — deep analog floor without sterile 100% black",
-    manualSpectrumTitle: "Prism Spectrum (L→R · 20% each)",
-    manualDarkSpectrumTitle: "Dark Room Spectrum (Veiled Polarity)",
-    manualLogosTitle: "Logos, Icon Scales & Clear Space",
-    manualLogosSummary:
-      "Master Prism (>120px, 1X clear space), P monogram (16–119px, height of P), and Dark Room DR icon (22% radius on Magnetic Black, width of D).",
-    manualTypeTitle: "Typography & Physical Media",
-    manualTypeSummary:
-      "Geist / Inter uppercase titles (+0.04em to +0.08em Prism; -0.01em Dark Room), JetBrains Mono for codes, cotton stationery, and VHS packaging.",
-    manualOpenSite: "Open full manual",
-    manualOpenPdf: "Open official PDF",
+      "Logos, colors, type and the rules that keep Prism and Dark Room recognizable. Read it here or take the PDF with you.",
+    manualRead: "Read online",
+    manualDownload: "Download PDF",
+    manualCoverAlt: "Cover of the Prism & Dark Room Brand Manual PDF",
+    bands: {
+      cyan: "Mobile apps",
+      olive: "Desktop software",
+      yellow: "Web apps",
+      orange: "Dark Room",
+      magenta: "Start a project",
+    },
   },
   behind: {
     title: "Who's behind Prism",
@@ -508,6 +531,7 @@ const en: Messages = {
       "/work": "Work · Prism",
       "/dark-room": "Dark Room",
       "/about": "About · Prism",
+      "/brand-manual": "Brand Manual · Prism",
       "/behind-prism": "Behind Prism · Prism",
       "/contact": "Contact · Prism",
     },
@@ -620,33 +644,49 @@ const pt: Messages = {
     enter: "Entrar na Dark Room",
   },
   about: {
+    eyebrow: "Estúdio independente · Curitiba",
     title: "Sobre a Prism",
-    why: "Por que Prism",
-    whyP1:
-      "Um prisma recebe um feixe de luz e devolve várias cores. A gente trabalha igual: um problema e uma ideia entram, e da mesma mente saem várias soluções.",
-    whyP2:
-      "É daí que saem os apps, os softwares para desktop, os web apps e os projetos da Dark Room. Cada um com o seu jeito, todos vindos do mesmo lugar.",
-    dark: "E a Dark Room?",
-    darkP:
+    lead: "Um prisma recebe um feixe de luz e devolve várias cores. A gente trabalha igual: um problema e uma ideia entram, e da mesma mente saem várias soluções.",
+    principlesTitle: "Como a gente trabalha",
+    principles: [
+      {
+        code: "01",
+        title: "Do rascunho ao lançamento, as mesmas mãos",
+        body: "Quem desenha é quem constrói e publica, então nada se perde no caminho.",
+      },
+      {
+        code: "02",
+        title: "Menos para aprender",
+        body: "A gente tira coisa até o que sobra parecer óbvio. Se precisa de tutorial, ainda não está pronto.",
+      },
+      {
+        code: "03",
+        title: "Cada projeto com a sua cara",
+        body: "Lumen e Cartograph não se parecem em nada. O que eles têm em comum é o cuidado com que foram feitos.",
+      },
+    ],
+    roomsTitle: "Dois ambientes, um estúdio",
+    prismTitle: "Prism",
+    prismBody:
+      "Apps mobile, softwares para desktop e apps web. Claros, iluminados e feitos para o uso de todo dia.",
+    darkTitle: "Dark Room",
+    darkBody:
       "A Dark Room é onde ficam os jogos e os projetos mais experimentais. O nome vem da câmara escura da fotografia: as coisas ficam lá dentro sendo reveladas com calma, até estarem prontas para sair.",
     visit: "Visitar a Dark Room",
     seeWork: "Ver o trabalho",
-    manualTitle: "Manual da Marca",
+    manualTitle: "Manual da marca",
     manualLead:
-      "O sistema visual da Prism e da Dark Room opera em polaridades luminosas opostas, mantendo uma fita espectral fixa de cinco cores com papéis semânticos definidos.",
-    manualSubstrates: "Substratos",
-    manualPrismSubstrate: "Marfim Vintage — clareza editorial para software, documentação e B2B",
-    manualDarkSubstrate: "Preto Magnético — piso escuro profundo sem preto 100% estéril",
-    manualSpectrumTitle: "Fita Espectral Prism (E→D · 20% cada)",
-    manualDarkSpectrumTitle: "Espectro Sombrio Dark Room",
-    manualLogosTitle: "Logotipos, Escalas de Ícone e Respiro",
-    manualLogosSummary:
-      "Master Prism (>120px, respiro 1X), monograma P (16–119px, altura do P) e ícone Dark Room DR (raio 22% sobre Preto Magnético, largura do D).",
-    manualTypeTitle: "Tipografia e Mídia Física",
-    manualTypeSummary:
-      "Geist / Inter em caixa-alta (+0,04em a +0,08em Prism; -0,01em Dark Room), JetBrains Mono para códigos, papel algodão e embalagens VHS.",
-    manualOpenSite: "Ver manual completo",
-    manualOpenPdf: "Abrir PDF oficial",
+      "Logos, cores, tipografia e as regras que deixam a Prism e a Dark Room reconhecíveis. Leia aqui ou leve o PDF.",
+    manualRead: "Ler online",
+    manualDownload: "Baixar PDF",
+    manualCoverAlt: "Capa do PDF do Manual da Marca Prism & Dark Room",
+    bands: {
+      cyan: "Apps mobile",
+      olive: "Software para desktop",
+      yellow: "Apps web",
+      orange: "Dark Room",
+      magenta: "Começar um projeto",
+    },
   },
   behind: {
     title: "Quem está por trás do Prism",
@@ -817,6 +857,7 @@ const pt: Messages = {
       "/work": "Trabalho · Prism",
       "/dark-room": "Dark Room",
       "/about": "Sobre · Prism",
+      "/brand-manual": "Manual da Marca · Prism",
       "/behind-prism": "Por trás do Prism · Prism",
       "/contact": "Contato · Prism",
     },

@@ -61,11 +61,3 @@ export const SURFACE = {
   prismGlass: "#EAE3D6",
   prismElevated: "#F6F2EB",
 } as const;
-
-export const SPECTRUM_ROLES = [
-  { name: "Prism Cyan", hex: SPECTRUM.cyan, role: "Links, dados primários e clareza técnica" },
-  { name: "Citrus Olive", hex: SPECTRUM.olive, role: "Status consolidado (projeto finalizado) e documentação" },
-  { name: "Solar Yellow", hex: SPECTRUM.yellow, role: "Avisos, prévia e telemetria" },
-  { name: "Warm Orange", hex: SPECTRUM.orange, role: "Versões, datas e hardware" },
-  { name: "Intense Magenta", hex: SPECTRUM.magenta, role: "Ação decisiva e destaque" },
-] as const;

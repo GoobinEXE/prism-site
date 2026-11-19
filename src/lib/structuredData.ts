@@ -2,6 +2,7 @@ import { siteUrl } from "@/lib/site";
 import { absoluteUrl, siteName } from "@/lib/seo";
 import { projects } from "@/lib/projects";
 import { messages } from "@/lib/i18n/messages";
+import brandManualPdf from "@/lib/brandManualPdf.json";
 
 const ORG_ID = `${siteUrl}/#organization`;
 const PERSON_ID = `${siteUrl}/behind-prism#person`;
@@ -95,6 +96,38 @@ export const darkRoomGraph = {
       operatingSystem: "Discord",
     }),
   ].map((item, index) => ({ "@type": "ListItem", position: index + 1, item })),
+};
+
+export const aboutGraph = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  url: absoluteUrl("/about"),
+  mainEntity: { "@id": ORG_ID },
+};
+
+export const brandManualGraph = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: "Prism & Dark Room Brand Manual",
+  url: absoluteUrl("/brand-manual"),
+  inLanguage: ["en", "pt-BR"],
+  publisher: { "@id": ORG_ID },
+  encoding: [
+    {
+      "@type": "MediaObject",
+      encodingFormat: "application/pdf",
+      inLanguage: "en",
+      contentUrl: absoluteUrl(brandManualPdf.en.pdf),
+      contentSize: `${(brandManualPdf.en.bytes / 1_000_000).toFixed(1)} MB`,
+    },
+    {
+      "@type": "MediaObject",
+      encodingFormat: "application/pdf",
+      inLanguage: "pt-BR",
+      contentUrl: absoluteUrl(brandManualPdf.pt.pdf),
+      contentSize: `${(brandManualPdf.pt.bytes / 1_000_000).toFixed(1)} MB`,
+    },
+  ],
 };
 
 export function jsonLd(data: unknown) {

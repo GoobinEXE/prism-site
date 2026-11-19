@@ -217,3 +217,12 @@ Fluxo: Google Flow → Nano Banana 2.1 (rascunho) / Pro (plate) → sobrescrever
 | Página pessoal + CV | shipped (`/behind-prism`) |
 | Nav Filosofia → `/sobre` | corrigido |
 | Site em inglês (cópia, slugs, metadados, CV) | shipped; rotas pt-BR redirecionam |
+| About (direção A · Espectro) + `/brand-manual` bilíngue | shipped; fonte única em `src/lib/brandManual.ts` |
+| PDFs do manual gerados da rota (`npm run pdf:brand`) | shipped (`public/assets/brand/manual/`) |
+
+---
+
+## Manual da Marca (`/brand-manual`) e PDFs
+
+- **Fonte única de edição:** editar o texto e a estrutura do manual **somente em `src/lib/brandManual.ts`** (cores em `src/lib/brandTokens.ts`, contrastes calculados em `src/lib/contrast.ts`). O `brand-manual-print.html` externo não é mais a fonte.
+- **Geração dos PDFs e capas:** rodar `npm run pdf:brand` (executa `scripts/build-brand-pdf.mjs`, gera `public/assets/brand/manual/prism-dark-room-brand-manual-{en,pt}.pdf`, `cover-{en,pt}.jpg`, atualiza `src/lib/brandManualPdf.json` e mantém a cópia legada em `public/prism-darkroom-brand-manual.pdf`).

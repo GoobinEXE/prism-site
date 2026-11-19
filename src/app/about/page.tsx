@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { AboutView } from "./AboutView";
 import { pageMeta } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { aboutGraph } from "@/lib/structuredData";
 
 export const metadata: Metadata = pageMeta({
   title: "About",
@@ -10,5 +12,10 @@ export const metadata: Metadata = pageMeta({
 });
 
 export default function AboutPage() {
-  return <AboutView />;
+  return (
+    <>
+      <JsonLd data={aboutGraph} />
+      <AboutView />
+    </>
+  );
 }

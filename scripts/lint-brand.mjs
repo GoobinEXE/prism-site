@@ -96,13 +96,24 @@ for (const [name, value] of Object.entries(VEIL)) {
   }
 }
 
-for (const [phase, set] of Object.entries(INK)) {
-  for (const [name, value] of Object.entries(set)) {
-    const found = [...css.matchAll(new RegExp(`--ink-${name}:\\s*(#[0-9a-f]{6})`, "gi"))].map((m) => m[1].toUpperCase());
-    const css_value = found[phase === "prism" ? 0 : 1];
-    if (css_value !== value) {
-      report("src/app/globals.css", 0, "espelho CSS ≠ brandTokens", `--ink-${name} (${phase}): ${css_value} ≠ ${value}`);
-    }
+const darkRoomMatch = css.match(/\[data-phase="dark-room"\]\s*\{([^}]*)\}/);
+const prismBlock = darkRoomMatch ? css.slice(0, darkRoomMatch.index) : css;
+const darkRoomBlock = darkRoomMatch ? darkRoomMatch[1] : "";
+
+const blockVar = (block, name) =>
+  block.match(new RegExp(`--${name}:\\s*(#[0-9a-f]{6})`, "i"))?.[1].toUpperCase();
+
+for (const [name, value] of Object.entries(INK.prism)) {
+  const cssValue = blockVar(prismBlock, `ink-${name}`);
+  if (cssValue !== value) {
+    report("src/app/globals.css", 0, "espelho CSS ≠ brandTokens", `--ink-${name} (prism): ${cssValue} ≠ ${value}`);
+  }
+}
+
+for (const [name, value] of Object.entries(INK.darkRoom)) {
+  const cssValue = blockVar(darkRoomBlock, `ink-${name}`);
+  if (cssValue !== value) {
+    report("src/app/globals.css", 0, "espelho CSS ≠ brandTokens", `--ink-${name} (darkRoom): ${cssValue} ≠ ${value}`);
   }
 }
 

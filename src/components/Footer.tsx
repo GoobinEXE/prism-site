@@ -13,7 +13,7 @@ export function Footer() {
 
   return (
     <footer
-      className="mt-auto"
+      className="site-footer mt-auto"
       style={{ background: "var(--footer-bg)" }}
     >
       <div className="container px-(--margin) py-14">

@@ -25,6 +25,16 @@ export function detectDeviceLocale(): Locale {
   return "en";
 }
 
+export function readQueryLocale(): Locale | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const value = new URLSearchParams(window.location.search).get("lang");
+    return isLocale(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
 export function readStoredLocale(): Locale | null {
   try {
     const value = localStorage.getItem(LOCALE_STORAGE_KEY);
@@ -35,6 +45,15 @@ export function readStoredLocale(): Locale | null {
 }
 
 export function resolveLocale(): Locale {
+  const query = readQueryLocale();
+  if (query) {
+    try {
+      localStorage.setItem(LOCALE_STORAGE_KEY, query);
+    } catch {
+      /* ignore quota / private mode */
+    }
+    return query;
+  }
   const stored = readStoredLocale();
   if (stored) return stored;
   if (typeof document !== "undefined") {
@@ -56,4 +75,4 @@ export function applyLocale(locale: Locale) {
   window.dispatchEvent(new Event(LOCALE_EVENT));
 }
 
-export const localeBootScript = `(function(){var k=${JSON.stringify(LOCALE_STORAGE_KEY)};var s=null;try{s=localStorage.getItem(k);}catch(e){}var lang=(s==="pt"||s==="en")?s:((((navigator.languages&&navigator.languages[0])||navigator.language||"en")+"").toLowerCase().indexOf("pt")===0?"pt":"en");if(s!==lang){try{localStorage.setItem(k,lang);}catch(e){}}var h=document.documentElement;h.setAttribute("data-locale",lang);h.setAttribute("lang",lang==="pt"?"pt-BR":"en");})();`;
+export const localeBootScript = `(function(){var k=${JSON.stringify(LOCALE_STORAGE_KEY)};var q=null;try{q=new URLSearchParams(location.search).get("lang");}catch(e){}var s=null;try{s=localStorage.getItem(k);}catch(e){}var lang=(q==="pt"||q==="en")?q:((s==="pt"||s==="en")?s:((((navigator.languages&&navigator.languages[0])||navigator.language||"en")+"").toLowerCase().indexOf("pt")===0?"pt":"en"));if(s!==lang){try{localStorage.setItem(k,lang);}catch(e){}}var h=document.documentElement;h.setAttribute("data-locale",lang);h.setAttribute("lang",lang==="pt"?"pt-BR":"en");})();`;
