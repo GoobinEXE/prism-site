@@ -26,7 +26,6 @@ type ManualTocProps = {
 export function ManualToc({
   tocLabel,
   sections,
-  downloadsTitle,
   downloads,
 }: ManualTocProps) {
   const [activeId, setActiveId] = useState<string>(sections[0]?.id ?? "cover");
@@ -69,58 +68,8 @@ export function ManualToc({
   }, [sections]);
 
   return (
-    <>
-      <aside className="bm-toc-rail bm-screen-only hidden lg:block">
-        <div className="bm-toc-sticky">
-          <nav aria-label={tocLabel} className="bm-toc">
-            <ul className="space-y-1">
-              {sections.map((section) => {
-                const isActive = activeId === section.id;
-                return (
-                  <li key={section.id}>
-                    <a
-                      href={`#${section.id}`}
-                      aria-current={isActive ? "location" : undefined}
-                      className={`bm-toc__link ${isActive ? "is-active" : ""}`}
-                      style={isActive ? { color: "var(--ink-cyan)" } : undefined}
-                    >
-                      <span className="bm-toc__num">{section.number}</span>
-                      <span className="bm-toc__title">{section.title}</span>
-                      <span className="bm-toc__page">p. {section.pdfPage}</span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-
-          <div className="bm-toc__downloads mt-5">
-            <div className="label-caps text-(--text-muted)">{downloadsTitle}</div>
-            <div className="mt-2.5 flex flex-col gap-2">
-              {downloads.map((item) => (
-                <a
-                  key={item.locale}
-                  href={item.href}
-                  download
-                  className="bm-toc__dl"
-                >
-                  <span className="font-semibold">{item.label}</span>
-                  {item.meta ? (
-                    <span className="block font-mono text-[10px] text-(--text-muted)">
-                      {item.meta}
-                    </span>
-                  ) : null}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      <nav
-        aria-label={tocLabel}
-        className="bm-toc-mobile bm-screen-only lg:hidden"
-      >
+    <div className="bm-toc-bar bm-screen-only">
+      <nav aria-label={tocLabel} className="bm-toc-strip">
         {sections.map((section) => {
           const isActive = activeId === section.id;
           return (
@@ -131,12 +80,28 @@ export function ManualToc({
               className={`bm-toc-chip ${isActive ? "is-active" : ""}`}
               style={isActive ? { color: "var(--ink-cyan)" } : undefined}
             >
-              <span className="font-mono text-[10px]">{section.number}</span>
+              <span className="font-mono text-[10px] opacity-70">{section.number}</span>
               <span>{section.title}</span>
+              <span className="hidden font-mono text-[10px] opacity-60 xl:inline">
+                p.{section.pdfPage}
+              </span>
             </a>
           );
         })}
       </nav>
-    </>
+
+      <div className="bm-toc-actions">
+        {downloads.map((item) => (
+          <a
+            key={item.locale}
+            href={item.href}
+            download
+            className="bm-toc-dl-pill"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }
